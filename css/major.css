@@ -1,0 +1,45 @@
+/* major.css */
+*{
+    margin: 0;
+    padding: 0;
+}
+
+html,body{
+    height: 100%;
+}
+
+
+.doc{
+    width: auto;
+}
+.doc iframe{
+    width: 100%;
+    height: 100%;
+}
+
+#container
+{
+    height: 85%;
+    margin: auto 5%;
+}
+
+#content
+{
+    height: 100%;
+}
+
+#run {
+    width: 20%;
+    margin-top: 10px;
+}
+
+#code {
+    font-size: 20px;
+    resize: none;
+}
+
+#output {
+    margin-bottom: 20%;
+    font-size: 20px;
+    resize: none;
+}
