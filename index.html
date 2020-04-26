@@ -5,11 +5,58 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>在线 Python 解释器</title>
+    <title>Python 在线</title>
     <link rel="stylesheet" href="css/major.css">
+    <style>
+        /* major.css */
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        .doc {
+            width: auto;
+        }
+
+        .doc iframe {
+            width: 100%;
+            height: 100%;
+        }
+
+        #container {
+            height: 85%;
+            margin: auto 5%;
+        }
+
+        #content {
+            height: 100%;
+        }
+
+        #run {
+            width: 20%;
+            margin-top: 10px;
+        }
+
+        #code {
+            font-size: 20px;
+            resize: none;
+        }
+
+        #output {
+            margin-bottom: 10%;
+            font-size: 20px;
+            resize: none;
+        }
+    </style>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
+
 
 <body>
     <div id="container">
@@ -29,16 +76,22 @@
             </div>
             <div class="col-md-6">
                 <p class="text-center h3">运行结果</p>
-                <div class="col-lg-12"><textarea id="output" disabled placeholder="点击 运行 ，输出的结果就会在这里显示啦"
+                <div class="col-lg-12"><textarea id="output" disabled
+                        placeholder="点击 运行 ，输出的结果就会在这里显示啦&#10;(没有变化的话，是不是忘记写 print 了)"
                         class="text-center form-control"></textarea></div>
                 <!-- 代码输入部分 -->
                 <p class="text-center h3">
                     在下面输入代码
                 </p>
-                <textarea id="code" class="form-control" placeholder="在这里写下你的代码"></textarea>
+                <textarea id="code" class="form-control" placeholder=">> 在这里写下你的代码"></textarea>
                 <div class="text-right"><button id="run" type="button" class="btn btn-primary ">运行</button></div>
             </div><!-- 结果显示部分 -->
         </div>
+        <hr />
+        <footer class="row">
+            <p class="col-md-6 text-right">用代码编织未来</p>
+            <p class="col-md-6 text-left">WHUT</p>
+        </footer>
     </div>
     <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"
