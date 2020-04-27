@@ -6,9 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Python 在线</title>
-    <link rel="stylesheet" type="text/css" href="static\LearnPython\major.css">
+    <link rel="stylesheet" type="text/css" href="static\css\major.css">
+    <link rel="stylesheet" type="text/css" href="static\css\codemirror.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <script src="static\js\require.js" data-main="static\js\main"></script>
 </head>
 
 
@@ -37,7 +39,9 @@
                 <p class="text-center h3">
                     在下面输入代码
                 </p>
-                <textarea id="code" class="form-control" placeholder=">> 在这里写下你的代码"></textarea>
+                <form>
+                    <textarea id="code" name="code"></textarea>
+                </form>
                 <div class="text-right"><button id="run" type="button" class="btn btn-primary ">运行</button></div>
             </div>
             <!-- 结果显示部分 -->
