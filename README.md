@@ -2,14 +2,14 @@
 
 ## 配置说明
 
->.
-├── LearnPython            **Python实验界面**
-│   ├── static
-│   │   └── LearnPython    **css等文件**
-│   └── templates
-│       └── LearnPython    **Html文件**
-├── siteProject
-└── static              **全局静态文件**
+>.  
+├── LearnPython            **Python实验界面**  
+│   ├── static  
+│   │   └── LearnPython    **css等文件**  
+│   └── templates  
+│       └── LearnPython    **Html文件**  
+├── siteProject  
+└── static              **全局静态文件**  
 
 
 ## 环境要求
@@ -40,7 +40,7 @@ pip3 install django
 
 ## 运行方法
 ```shell
-python3 online_app.py runserver
+python3 manage.py runserver
 ```
 运行**start.sh**或**start.bat**
 
