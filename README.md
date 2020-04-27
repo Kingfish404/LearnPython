@@ -1,10 +1,22 @@
 # Python online
 
-## 环境
+## 配置说明
 
-系统：Linux
+>.
+├── LearnPython            **Python实验界面**
+│   ├── static
+│   │   └── LearnPython    **css等文件**
+│   └── templates
+│       └── LearnPython    **Html文件**
+├── siteProject
+└── static              **全局静态文件**
 
-软件：Python3 以及 django
+
+## 环境要求
+
+系统：Linux 或者 Window10
+
+软件：Python3 以及 Django
 
 ### Debian/Ubuntu
 ```shell
@@ -26,14 +38,15 @@ pip3 install django
 
 利用django的配置，实现了一个简单的web服务器，返回浏览器提交的输入框中的python代码的运行结果并显示
 
-## 运行方法：
+## 运行方法
 ```shell
 python3 online_app.py runserver
 ```
+运行**start.sh**或**start.bat**
 
-## 来源
+## REF
 
-本项目来自下方的项目
+本项目参考过以下项目
 
 https://github.com/Jet-ChenBo/online_python.git
 

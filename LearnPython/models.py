@@ -2,9 +2,11 @@ from django.db import models
 import subprocess
 from django.http import JsonResponse
 
-# Create your models here.
 from django.views.decorators.http import require_POST
 from django.views.decorators.csrf import csrf_exempt
+
+# 主要功能函数
+# Major function
 
 def run_code(code):
     # 在服务器上运行代码
