@@ -302,7 +302,7 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {
 }
 
 .CodeMirror-scroll {
-    width: 100%;
+    width: 99%;
     overflow: scroll !important;
     overflow-x: auto !important;
     /* Things will break if this is overridden */

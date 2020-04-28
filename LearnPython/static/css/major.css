@@ -8,6 +8,7 @@
 html,
 body {
     height: 100%;
+    width: 100%;
 }
 
 .doc {
@@ -33,8 +34,21 @@ body {
     margin-top: 10px;
 }
 
+#out {
+    padding: initial;
+}
+
 #output {
     margin-bottom: 10%;
     font-size: x-large;
     resize: none;
+}
+
+
+/* adapt css */
+
+@media screen and (max-width: 760px) {
+    #container {
+        margin: auto 4%;
+    }
 }
