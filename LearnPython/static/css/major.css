@@ -20,6 +20,11 @@ body {
     height: 100%;
 }
 
+.feedback {
+    bottom: 0;
+    position: absolute;
+}
+
 #container {
     height: 90%;
     margin: auto 5%;
