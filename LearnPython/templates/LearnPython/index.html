@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Python 在线平台</title>
+    <title>Hello Python</title>
     <link rel="stylesheet" type="text/css" href="static\css\major.css">
     <link rel="stylesheet" type="text/css" href="static\css\codemirror.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -15,17 +15,17 @@
 
 
 <body>
-    <div id="container">
-        <!-- 页面的整体布局 -->
-        <div class="row">
+    <div class="container-fluid">
+        <header class="row">
             <div class="col-md-12">
-                <h1 class="text-center">
-                    Python 在线平台
-                </h1>
+                <h1>Hello Python</h1>
+                <h3>编程学习平台</h3>
             </div>
-        </div>
-        <hr>
-        <!-- 标题和真正内容的分割线 -->
+        </header>
+        <hr />
+    </div>
+    <div id="container">
+        <!-- 主要内容 -->
         <div id="content" class="row">
             <!-- 这一行用来放置主要内容 -->
             <div class="col-md-6 doc ">
@@ -43,13 +43,17 @@
                     <textarea id="code" name="code"></textarea>
                 </form>
                 <div class="text-right"><button id="run" type="button" class="btn btn-primary ">运行</button></div>
-                <a class="text-right feedback" target="_blank" href="https://forms.office.com/Pages/ResponsePage.aspx?id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAAN__uylFJ9UOFFRQ0YyMjJWVlIyQlM3NFNEOFlaNTNWNi4u"><button id="feed" type="button" class="btn">反馈</button></a>
+
+                <a class="text-right feedback" target="_blank" href="https://forms.office.com/Pages/ResponsePage.aspx?id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAAN__uylFJ9UOFFRQ0YyMjJWVlIyQlM3NFNEOFlaNTNWNi4u"><button
+                        id="feed" type="button" class="btn">反馈</button></a>
+                <div class="text-center tips">
+                    <div class="alert alert-dark" role="alert">
+                        小提示:如果只输入一行，可以直接计算表达式
+                    </div>
+                </div>
 
             </div>
-
-            <!-- 结果显示部分 -->
         </div>
-
     </div>
     <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
@@ -92,5 +96,6 @@
         })
     </script>
 </body>
+
 
 </html>

@@ -11,6 +11,25 @@ body {
     width: 100%;
 }
 
+header {
+    color: aliceblue;
+    background-color: rgb(10, 73, 145);
+    margin-left: 0;
+}
+
+header h1 {
+    line-height: initial;
+    margin: auto 5%;
+    display: inline-block;
+    user-select: none;
+}
+
+header h3 {
+    float: right;
+    margin: auto 5%;
+    line-height: 200%;
+}
+
 .doc {
     width: auto;
 }
@@ -22,7 +41,13 @@ body {
 
 .feedback {
     bottom: 0;
+    float: left;
+    margin: auto;
     position: absolute;
+}
+
+.tips {
+    bottom: 0;
 }
 
 #container {
@@ -36,7 +61,7 @@ body {
 
 #run {
     width: 20%;
-    margin-top: 10px;
+    margin: 1% auto;
 }
 
 #out {
@@ -53,6 +78,18 @@ body {
 /* adapt css */
 
 @media screen and (max-width: 760px) {
+    header h1 {
+        font-size: xx-large;
+    }
+    header h3 {
+        font-size: large;
+    }
+    .doc {
+        height: 45%;
+    }
+    .feedback {
+        display: none;
+    }
     #container {
         margin: auto 4%;
     }
