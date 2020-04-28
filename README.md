@@ -16,7 +16,7 @@
 
 系统：Linux 或者 Window10
 
-软件：Python3 以及 Django
+软件：Python 以及 Django 与 Sqlite3
 
 ### Debian/Ubuntu
 ```shell
@@ -41,8 +41,17 @@ pip3 install django
 ## 运行方法
 ```shell
 python3 manage.py runserver
+# 或者
+python manage.py runserver
 ```
 运行**start.sh**或**start.bat**
+
+## 测试方法
+```shell
+python3 manage.py test
+# 或者
+python3 manage.py test
+```
 
 ## REF
 
