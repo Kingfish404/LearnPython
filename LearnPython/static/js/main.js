@@ -1,5 +1,5 @@
 require([
-    "static/js/cm/lib/codemirror", "static/js/cm/mode/python/python"
+    "static/js/cm/lib/codemirror", "static/js/cm/mode/python/python","static/js/cm/addon/hint/show-hint","static/js/cm/addon/edit/closebrackets"
   ], function(CodeMirror) {
     var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
       lineNumbers: true,
@@ -10,8 +10,10 @@ require([
       },
       lineNumbers: true,
       indentUnit: 4,
-      matchBrackets: true
+      autoCloseBrackets: true,
+      theme: "base16-light"
     });
+    editor.on("keypress",function(){editor.showHint()})
     editor.on("change",function(){editor.save()});
   });
   

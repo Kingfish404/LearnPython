@@ -27,7 +27,7 @@
                         "getattr", "globals", "hasattr", "hash", "help", "hex", "id",
                         "input", "int", "isinstance", "issubclass", "iter", "len",
                         "list", "locals", "map", "max", "memoryview", "min", "next",
-                        "object", "oct", "open", "ord", "pow", "property", "range",
+                        "object", "oct", "open", "ord", "pow", "property", "print", "range",
                         "repr", "reversed", "round", "set", "setattr", "slice",
                         "sorted", "staticmethod", "str", "sum", "super", "tuple",
                         "type", "vars", "zip", "__import__", "NotImplemented",
