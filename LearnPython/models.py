@@ -18,7 +18,7 @@ def run_code(code):
         code = 'print('+code+')'
     try:
         output = subprocess.check_output(
-            ['python', '-c', code], universal_newlines=True, stderr=subprocess.STDOUT,timeout=timeOut)
+            ['python3', '-c', code], universal_newlines=True, stderr=subprocess.STDOUT,timeout=timeOut)
     except subprocess.TimeoutExpired as e:
         output = '计算超时,请简化你的代码\n运行时间不得超过 '+str(e.timeout)+' 秒'
     except Exception as e:

@@ -4,11 +4,11 @@
 
 >.  
 ├── LearnPython            **Python实验界面**  
-│   ├── static  
-│   │   └── LearnPython    **css等文件**  
-│   └── templates  
-│       └── LearnPython    **Html文件**  
-├── siteProject  
+│   ├── static      **css等文件**  
+│   │   └── LearnPython
+│   └── templates      **Html文件**  
+│       └── LearnPython
+├── siteProject  **项目设置**
 └── static              **全局静态文件**  
 
 
@@ -52,6 +52,17 @@ python3 manage.py test
 # 或者
 python3 manage.py test
 ```
+
+## 注意
+
+默认的代码执行命令为python,如果在Linux平台运行，且希望执行pyhton3版本
+推荐用以下命令
+```shell
+sudo mv /usr/bin/python /usr/bin/python_backup
+sudo ln -s /usr/bin/python3 /usr/bin/python
+```
+
+将python命令指向python3
 
 ## REF
 
