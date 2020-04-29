@@ -31,8 +31,7 @@ header h3 {
 }
 
 .doc {
-    width: auto;
-    overflow: auto;
+    overflow: hidden;
 }
 
 .doc iframe {
