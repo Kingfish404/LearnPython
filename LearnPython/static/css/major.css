@@ -32,6 +32,7 @@ header h3 {
 
 .doc {
     width: auto;
+    overflow: auto;
 }
 
 .doc iframe {
@@ -48,6 +49,7 @@ header h3 {
 
 .tips {
     bottom: 0;
+    margin-bottom: 10%;
 }
 
 #container {

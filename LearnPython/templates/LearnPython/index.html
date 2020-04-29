@@ -30,7 +30,7 @@
         <!-- 主要内容 -->
         <div id="content" class="row">
             <!-- 这一行用来放置主要内容 -->
-            
+
             <div class="col-md-6 doc ">
                 <button id="official" style="margin-left: 1em;" class="btn btn-primary">
                     <span style="padding: 5px;">官方文档</span>
@@ -53,7 +53,7 @@
                 </form>
                 <div class="text-right"><button id="run" type="button" class="btn btn-primary ">运行</button></div>
 
-                <a class="text-right feedback" target="_blank" href="https://forms.office.com/Pages/ResponsePage.aspx?id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAAN__uylFJ9UOFFRQ0YyMjJWVlIyQlM3NFNEOFlaNTNWNi4u"><button
+                <a class="row text-right feedback" target="_blank" href="https://forms.office.com/Pages/ResponsePage.aspx?id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAAN__uylFJ9UOFFRQ0YyMjJWVlIyQlM3NFNEOFlaNTNWNi4u"><button
                         id="feed" type="button" class="btn">反馈</button></a>
                 <div class="text-center tips">
                     <div class="alert alert-dark" role="alert">
@@ -67,7 +67,6 @@
     <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script>
-        
         function changeSize(ele) {
             $(ele).css({
                 'height': 'auto',
@@ -104,11 +103,11 @@
                 success: print // 在请求成功之后调用 pprint 函数，将结果打印到输出框  })})
             })
         })
-        $('#official').click(function(){
-            $('iframe').attr("src","https://docs.python.org/zh-cn/3/tutorial/index.html")
+        $('#official').click(function() {
+            $('iframe').attr("src", "https://docs.python.org/zh-cn/3/tutorial/index.html")
         })
-        $('#manual').click(function(){
-            $('iframe').attr("src","https://www.runoob.com/python/python-tutorial.html")
+        $('#manual').click(function() {
+            $('iframe').attr("src", "https://www.runoob.com/python/python-tutorial.html")
         })
     </script>
 </body>
