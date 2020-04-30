@@ -14,6 +14,7 @@ import os
 
 timeOut = 3
 
+
 def run_code(code):
     # 在服务器上运行代码
     div = code.split(sep="\n")
@@ -23,10 +24,10 @@ def run_code(code):
     try:
         if 'linux' in sys.platform:
             output = subprocess.check_output(
-            ['python3', '-c', code], universal_newlines=True, stderr=subprocess.STDOUT, timeout=timeOut)
+                ['python3', '-c', code], universal_newlines=True, stderr=subprocess.STDOUT, timeout=timeOut)
         else:
             output = subprocess.check_output(
-            ['python', '-c', code], universal_newlines=True, stderr=subprocess.STDOUT, timeout=timeOut)
+                ['python', '-c', code], universal_newlines=True, stderr=subprocess.STDOUT, timeout=timeOut)
     except subprocess.TimeoutExpired as e:
         output = '计算超时,请简化你的代码\n运行时间不得超过 '+str(e.timeout)+' 秒'
     except Exception as e:
@@ -50,16 +51,15 @@ def api(request):
 class Post():
     title = ""
     body = ""
-    __PostPath = os.getcwd()+"/Post/"
+    __PostPath = os.getcwd()+"/post/"
 
     def __str__(self):
         pass
 
     def readPost(self, postName="0"):
         try:
-            path=self.__PostPath+str(postName)+'.md'
-            print(path)
-            f = open(path, 'r',encoding='utf-8')
+            path = self.__PostPath+str(postName)+'.md'
+            f = open(path, 'r', encoding='utf-8', newline='\n')
         except FileNotFoundError as e:
             self.body = '# 404, '+str(postName)+' file not found'
             self.reformat2markdown()
