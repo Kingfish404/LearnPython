@@ -6,6 +6,7 @@ from django.views.decorators.http import require_POST
 from django.views.decorators.csrf import csrf_exempt
 
 import markdown
+import time
 import sys
 import os
 
@@ -14,20 +15,27 @@ import os
 
 timeOut = 3
 
+class Data:
+    output = str()
+    time = float()
 
 def run_code(code):
+    data = Data()
     # 在服务器上运行代码
     div = code.split(sep="\n")
     # 如果输入的代码只是一行表达式，那就直接输出计算结果
     if(len(div) == 1 and not 'print' in div[0] and not 'import' in div[0]):
         code = 'print('+code+')'
+
     try:
+        timeStart = time.time()
         if 'linux' in sys.platform:
             output = subprocess.check_output(
                 ['python3', '-c', code], universal_newlines=True, stderr=subprocess.STDOUT, timeout=timeOut)
         else:
             output = subprocess.check_output(
                 ['python', '-c', code], universal_newlines=True, stderr=subprocess.STDOUT, timeout=timeOut)
+        data.time=time.time()-timeStart
     except subprocess.TimeoutExpired as e:
         output = '计算超时,请简化你的代码\n运行时间不得超过 '+str(e.timeout)+' 秒'
     except Exception as e:
@@ -36,7 +44,9 @@ def run_code(code):
         output = output[:-1]
     if(output == ''):
         output = '请输入代码'
-    return output
+    data.output=output
+    print(data.time)
+    return data
 
 
 @csrf_exempt
@@ -44,9 +54,8 @@ def run_code(code):
 def api(request):
     # 解析代码的api
     code = request.POST.get('code')
-    output = run_code(code)
-    return JsonResponse({'output': output})
-
+    data = run_code(code)
+    return JsonResponse({'output': data.output,'time':data.time})
 
 class Post():
     title = ""
