@@ -65,7 +65,7 @@ header h3 {
 }
 
 .start {
-    margin-left: 1em;
+    margin-left: 12em;
 }
 
 .official {
@@ -146,6 +146,12 @@ header h3 {
     resize: none;
 }
 
+@media screen and (max-width: 1080px) {
+    .start {
+        margin-left: 5em;
+    }
+}
+
 
 /* adapt css */
 
@@ -156,13 +162,25 @@ header h3 {
     header h3 {
         font-size: large;
     }
+    .start {
+        margin-left: 1em;
+    }
     .doc {
         height: 45%;
+        -webkit-transform: none;
+        transform: none;
+    }
+    .lab {
+        -webkit-transform: none;
+        transform: none;
     }
     .feedback {
         display: none;
     }
     #container {
         margin: auto 4%;
+    }
+    #content {
+        width: auto;
     }
 }
