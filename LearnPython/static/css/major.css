@@ -9,6 +9,7 @@ html,
 body {
     height: 100%;
     width: 100%;
+    background-color: rgb(0, 43, 54);
 }
 
 header {
@@ -31,7 +32,23 @@ header h3 {
 }
 
 .doc {
+    padding: .5em;
+    border: 2px solid;
+    border-color: aliceblue;
     overflow: hidden;
+    -webkit-transition: none;
+    transition: none;
+    -webkit-transform: rotateY(10deg) translateZ(-100px);
+    transform: rotateY(10deg) translateZ(-100px);
+}
+
+.lab {
+    padding: .5em;
+    border: 2px solid;
+    border-color: aliceblue;
+    overflow: hidden;
+    -webkit-transform: rotateY(10deg) translateZ(-100px);
+    transform: rotateY(10deg) translateZ(-100px);
 }
 
 .doc iframe {
@@ -51,16 +68,10 @@ header h3 {
     margin-bottom: 0;
 }
 
-.feedback {
-    bottom: 0;
-    float: left;
-    margin: auto;
-    position: absolute;
-}
-
 .tips {
+    width: 50%;
     bottom: 0;
-    margin-bottom: 10%;
+    margin-bottom: 2%;
 }
 
 #container {

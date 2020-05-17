@@ -15,7 +15,6 @@
     <script src="static\js\require.js" data-main="static\js\main"></script>
 </head>
 
-
 <body>
     <div class="container-fluid">
         <header class="row">
@@ -34,15 +33,131 @@
             <div class="col-md-6 doc ">
                 <button style="margin-left: 1em;" class="start btn btn-primary">
                     <span style="padding: 5px;">开始</span>
-                <button  style="margin-left: 1em;" class="official btn btn-primary">
-                    <span style="padding: 5px;">官方文档</span>
-                </button>
+                    <button style="margin-left: 1em;" class="official btn btn-primary">
+                        <span style="padding: 5px;">官方文档</span>
+                    </button>
                 <button style="margin-left: 1em;" class="manual btn btn-primary">
-                    <span style="padding: 5px;">实验手册</span>
-                </button>
-                <iframe src="/start" frameborder="0" target="_self" id='iframe' style="margin-top: 5px;"></iframe>
+                        <span style="padding: 5px;">实验手册</span>
+                    </button>
+                <div class="startMenu">
+
+                    <style>
+                        * {
+                            margin: 0;
+                            padding: 0;
+                        }
+                        
+                        a:-webkit-any-link {
+                            color: black;
+                            cursor: pointer;
+                            text-decoration: none;
+                        }
+                        
+                        .stage2 {
+                            /* background-color: #EAEBEC; */
+                            padding: 0 0 2%;
+                            text-align: center;
+                        }
+                        
+                        .clearfix {
+                            zoom: 1;
+                            clear: both;
+                        }
+                        
+                        ul {
+                            display: block;
+                            list-style-type: disc;
+                            margin-block-start: 1em;
+                            margin-block-end: 1em;
+                            margin-inline-start: 0px;
+                            margin-inline-end: 0px;
+                            padding-inline-start: 40px;
+                        }
+                        
+                        .stage2 li {
+                            transition: transform .5s ease;
+                            display: inline-block;
+                            width: 280px;
+                            height: 230px;
+                            margin-right: 26px;
+                            margin-bottom: 26px;
+                            text-align: center;
+                            background-color: #fff;
+                            box-shadow: 0 5px 20px 0 rgba(210, 208, 208, 0.52);
+                            border-radius: 4px;
+                            overflow: hidden;
+                            cursor: pointer;
+                        }
+                        
+                        .stage2 li h4 {
+                            font-size: 18px;
+                            font-weight: 500;
+                            color: rgb(10, 73, 145);
+                            line-height: 25px;
+                            padding-top: 25px;
+                        }
+                        
+                        .stage2 li p {
+                            font-size: 14px;
+                            line-height: 25px;
+                            padding-top: 8px;
+                        }
+                        
+                        .stage2.app_wrap li em {
+                            transform: scale(1);
+                            margin: 22px auto 0;
+                        }
+                        
+                        .stage2 li:hover {
+                            transform: scale(1.15);
+                        }
+                    </style>
+
+                    <div class="section stage2 app_wrap">
+                        <ul class="clearfix">
+                            <li class="ico_ilearning"><em></em>
+                                <a href="#"></a>
+                                <h4>Python入门</h4>
+                                <p>第一次来请点这里<br>引领你进入编程的大门</p>
+                                </a>
+                            </li>
+                            <li class="ico_zxkt"><em></em>
+                                <a href="#"></a>
+                                <h4>Python进阶</h4>
+                                <p>想要继续提高自我？<br>点我就好</p>
+                                </a>
+                            </li>
+                            <li class="ico_gfwd" onclick="toOffcial()"><em></em>
+                                <h4>Python官方文档</h4>
+                                <p>易于学习又功能强大的编程语言<br>最新最全的官方文档</p>
+                            </li>
+                            <li class="ico_kyxl" onclick="toManual()"><em></em>
+                                <a href="https://study.kingfish404.cn/doc"></a>
+                                <h4>实验手册</h4>
+                                <p>最新技术，科学评测，即时反馈<br>训练题库，内容丰富，题型多样</p>
+                                </a>
+                            </li>
+
+                            <li class="ico_idatabase"><em></em>
+                                <a href="#"></a>
+                                <h4>在线视频等资源</h4>
+                                <p>搜集全网知识<br>优质资源在此</p>
+                                </a>
+                            </li>
+                            <li class="ico_itest"><em></em>
+                                <a target="_blank" href="https://forms.office.com/Pages/ResponsePage.aspx?id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAAN__uylFJ9UOFFRQ0YyMjJWVlIyQlM3NFNEOFlaNTNWNi4u">
+                                    <h4>反馈</h4>
+                                    <p>有你的声音，我们才能做的更好</p>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+
+                </div>
+                <iframe class="siteIframe" src="/start" frameborder="0" target="_self" id='iframe' style="margin-top: 5px;"></iframe>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6 lab">
                 <p class="resultTitle">运行结果</p>
                 <p class="costTimeTitle">运行用时:&nbsp;&nbsp;<span class="time"></span>s</p>
                 <div id="out" class="col-lg-12"><textarea id="output" disabled placeholder="点击 |运行|,输出的结果就会在这里显示啦&#10;(没有变化的话，是不是忘记print了)" class="form-control"></textarea>
@@ -56,11 +171,14 @@
                 </form>
                 <div class="text-right"><button id="run" type="button" class="btn btn-primary ">运行</button></div>
 
-                <a class="row text-right feedback" target="_blank" href="https://forms.office.com/Pages/ResponsePage.aspx?id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAAN__uylFJ9UOFFRQ0YyMjJWVlIyQlM3NFNEOFlaNTNWNi4u"><button
-                        id="feed" type="button" class="btn">反馈</button></a>
+
                 <div class="text-center tips">
+                    <p class="h3 text-left">提示</p>
                     <div class="alert alert-dark" role="alert">
-                        小提示:如果只输入一行，可以直接计算表达式
+                        如果只输入一行，可以直接计算表达式
+                    </div>
+                    <div class="alert alert-dark" role="alert">
+                        按下键盘上的Enter键，可以换行，编辑器会自动缩放的哦
                     </div>
                 </div>
 
@@ -70,6 +188,12 @@
     <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script>
+        $('.siteIframe').hide();
+
+        function sleep(d) {
+            for (var t = Date.now(); Date.now() - t <= d;);
+        }
+
         function get_text_rows(text) {
             return text.split("\n").length;
         }
@@ -107,6 +231,25 @@
             changeSize(ele, rows);
         }
 
+        function toStart() {
+            $('.siteIframe').hide();
+            $('.startMenu').show();
+            $('.siteIframe').attr("src", "/start")
+        }
+
+        function toOffcial() {
+            $('.startMenu').hide()
+            $('.siteIframe').show();
+            $('.siteIframe').attr("src", "https://docs.python.org/zh-cn/3/tutorial/index.html")
+
+        }
+
+        function toManual() {
+            $('.startMenu').hide()
+            $('.siteIframe').show();
+            $('.siteIframe').attr("src", "/doc")
+        }
+
         $('#run').click(function() {
             $.ajax({
                 url: '/api/', //代码发送的地址
@@ -119,13 +262,13 @@
             })
         })
         $('.start').click(function() {
-            $('iframe').attr("src", "/start")
+            toStart();
         })
         $('.official').click(function() {
-            $('iframe').attr("src", "https://docs.python.org/zh-cn/3/tutorial/index.html")
+            toOffcial();
         })
         $('.manual').click(function() {
-            $('iframe').attr("src", "/doc")
+            toManual();
         })
     </script>
 </body>

@@ -38,12 +38,14 @@ def run_code(code):
         data.time=time.time()-timeStart
     except subprocess.TimeoutExpired as e:
         output = '计算超时,请简化你的代码\n运行时间不得超过 '+str(e.timeout)+' 秒'
+        data.time= "3"
     except Exception as e:
         output = e.output
     if(output[-1] == '\n'):
         output = output[:-1]
     if(output == ''):
         output = '请输入代码'
+        data.time=0
     data.output=output
     return data
 
