@@ -1,2 +1,2 @@
-﻿REM 启动服务
+REM Start the Django server
 python manage.py runserver

@@ -45,7 +45,6 @@ def run_code(code):
     if(output == ''):
         output = '请输入代码'
     data.output=output
-    print(data.time)
     return data
 
 
