@@ -121,12 +121,14 @@ header h3 {
 }
 
 #container {
-    height: 90%;
-    margin: auto 5%;
+    height: 92%;
+    margin: auto auto;
+    max-width: 1920px;
 }
 
 #content {
     height: 100%;
+    width: 100%;
 }
 
 #run {

@@ -77,6 +77,10 @@
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script>
         var md = document.getElementById('content').innerText;
+        marked.setOptions([{
+            gfm: true,
+            breaks: true
+        }]);
         document.getElementById('content').innerHTML =
             marked(md);
         document.getElementById('content').style.whiteSpace = 'initial';
