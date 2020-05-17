@@ -16,8 +16,8 @@ class IndexView(generic.ListView):
     def get_queryset(self):
         pass
 
-class MenuView(generic.ListView):
-    template_name = 'LearnPython/start.html'
+class LoadingView(generic.ListView):
+    template_name = 'LearnPython/loading.html'
 
     def get_queryset(self):
         pass

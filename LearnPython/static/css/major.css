@@ -5,6 +5,40 @@
     padding: 0;
 }
 
+
+/* 浏览器滚动条样式 */
+
+
+/* width */
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 4px;
+}
+
+
+/* Track */
+
+::-webkit-scrollbar-track {
+    background: rgb(255, 255, 255);
+    border-radius: 8px;
+}
+
+
+/* Handle */
+
+::-webkit-scrollbar-thumb {
+    background: rgb(201, 201, 202);
+    border-radius: 8px;
+}
+
+
+/* Handle on hover */
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgb(162, 162, 163);
+}
+
 html,
 body {
     height: 100%;
@@ -30,11 +64,24 @@ header h3 {
     line-height: 200%;
 }
 
+.start {
+    margin-left: 1em;
+}
+
+.official {
+    margin-left: 1em;
+}
+
+.manual {
+    margin-left: 1em;
+}
+
 .doc {
+    height: 100%;
     padding: .5em;
     border: 2px solid;
     border-color: aliceblue;
-    overflow: hidden;
+    overflow: auto;
     -webkit-transition: none;
     transition: none;
     -webkit-transform: rotateY(10deg) translateZ(-100px);

@@ -11,7 +11,6 @@ urlpatterns = [
     url(r'^api/$', models.api),
     path('', views.IndexView.as_view()),
     path('doc/', views.doc, name='doc'),
-    path('doc/<int:pk>', views.doc, name='doc'),
     path('doc/<str:pk>', views.doc, name='doc'),
-    path('start/', views.MenuView.as_view()),
+    path('loading/', views.LoadingView.as_view()),
 ]

@@ -115,36 +115,36 @@
 
                     <div class="section stage2 app_wrap">
                         <ul class="clearfix">
-                            <li class="ico_ilearning"><em></em>
+                            <li class="PythonIndoor" onclick="toIndoor()"><em></em>
                                 <a href="#"></a>
                                 <h4>Python入门</h4>
                                 <p>第一次来请点这里<br>引领你进入编程的大门</p>
                                 </a>
                             </li>
-                            <li class="ico_zxkt"><em></em>
+                            <li class="PythonRoad"><em></em>
                                 <a href="#"></a>
-                                <h4>Python进阶</h4>
-                                <p>想要继续提高自我？<br>点我就好</p>
+                                <h4>Python学习路径</h4>
+                                <p>对学习感到迷茫了么<br>点我就好</p>
                                 </a>
                             </li>
-                            <li class="ico_gfwd" onclick="toOffcial()"><em></em>
+                            <li class="gfwd" onclick="toOffcial()"><em></em>
                                 <h4>Python官方文档</h4>
                                 <p>易于学习又功能强大的编程语言<br>最新最全的官方文档</p>
                             </li>
-                            <li class="ico_kyxl" onclick="toManual()"><em></em>
+                            <li class="document" onclick="toManual()"><em></em>
                                 <a href="https://study.kingfish404.cn/doc"></a>
-                                <h4>实验手册</h4>
+                                <h4>实验手册与平台说明</h4>
                                 <p>最新技术，科学评测，即时反馈<br>训练题库，内容丰富，题型多样</p>
                                 </a>
                             </li>
 
-                            <li class="ico_idatabase"><em></em>
+                            <li class="resource" onclick="toResource()"><em></em>
                                 <a href="#"></a>
                                 <h4>在线视频等资源</h4>
                                 <p>搜集全网知识<br>优质资源在此</p>
                                 </a>
                             </li>
-                            <li class="ico_itest"><em></em>
+                            <li class="feedback"><em></em>
                                 <a target="_blank" href="https://forms.office.com/Pages/ResponsePage.aspx?id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAAN__uylFJ9UOFFRQ0YyMjJWVlIyQlM3NFNEOFlaNTNWNi4u">
                                     <h4>反馈</h4>
                                     <p>有你的声音，我们才能做的更好</p>
@@ -155,7 +155,7 @@
                     </div>
 
                 </div>
-                <iframe class="siteIframe" src="/start" frameborder="0" target="_self" id='iframe' style="margin-top: 5px;"></iframe>
+                <iframe class="siteIframe" src="/loading" frameborder="0" target="_self" id='iframe' style="margin-top: 5px;"></iframe>
             </div>
             <div class="col-md-6 lab">
                 <p class="resultTitle">运行结果</p>
@@ -231,24 +231,40 @@
             changeSize(ele, rows);
         }
 
+        // 页面的跳转函数,隐藏开始菜单，显示iframe，设置.doc的overflow:auto
+        function toUrlPage(url) {
+            $('.startMenu').hide()
+            $('.siteIframe').show();
+            $('.siteIframe').attr("src", url)
+            $(".doc").css("overflow", "auto");
+        }
+
+        function toIndoor() {
+            toUrlPage("/doc/Python入门")
+        }
+
+        function toManual() {
+            toUrlPage("/doc/实验手册")
+        }
+
+        function toResource() {
+            toUrlPage("/doc/Resource")
+        }
+
         function toStart() {
             $('.siteIframe').hide();
             $('.startMenu').show();
-            $('.siteIframe').attr("src", "/start")
+            $('.siteIframe').attr("src", "/loading")
+            $(".doc").css("overflow", "auto");
         }
 
         function toOffcial() {
             $('.startMenu').hide()
             $('.siteIframe').show();
             $('.siteIframe').attr("src", "https://docs.python.org/zh-cn/3/tutorial/index.html")
-
+            $(".doc").css("overflow", "hidden");
         }
 
-        function toManual() {
-            $('.startMenu').hide()
-            $('.siteIframe').show();
-            $('.siteIframe').attr("src", "/doc")
-        }
 
         $('#run').click(function() {
             $.ajax({
