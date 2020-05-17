@@ -122,7 +122,7 @@ header h3 {
 
 #container {
     height: 92%;
-    margin: auto auto;
+    margin: 10px auto auto;
     max-width: 1920px;
 }
 
@@ -150,6 +150,23 @@ header h3 {
     .start {
         margin-left: 5em;
     }
+    .tips {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .start {
+        margin-left: 1em;
+    }
+    .doc {
+        -webkit-transform: none;
+        transform: none;
+    }
+    .lab {
+        -webkit-transform: none;
+        transform: none;
+    }
 }
 
 
@@ -163,7 +180,7 @@ header h3 {
         font-size: large;
     }
     .start {
-        margin-left: 1em;
+        margin-left: 0.5em;
     }
     .doc {
         height: 45%;
@@ -174,8 +191,8 @@ header h3 {
         -webkit-transform: none;
         transform: none;
     }
-    .feedback {
-        display: none;
+    .manual {
+        margin-left: 0.5em;
     }
     #container {
         margin: auto 4%;
