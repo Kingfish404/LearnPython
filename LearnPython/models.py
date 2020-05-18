@@ -9,15 +9,28 @@ import markdown
 import time
 import sys
 import os
+import re
 
 # 主要功能函数
 # Major function
 
 timeOut = 3
 
+
 class Data:
+    code = str()
     output = str()
     time = float()
+    safe = bool()
+
+# 对代码进行安全检测
+def safeChack(data):
+    disableShell = ['ps','cat','rm','cd','ls','dir','mv','cmd']
+    # 对不安全命令进行警告替换
+    for shell in disableShell:
+        _str = re.subn(r'system(.*[\"\'].*'+shell+'.*[\"\'].*)',"system(\"echo 为了系统安全,shell的 "+shell+" 命令是不允许使用的\")",data.code,0,re.IGNORECASE)
+        data.code=_str[0]
+    data.safe = True
 
 def run_code(code):
     data = Data()
@@ -33,20 +46,24 @@ def run_code(code):
             output = subprocess.check_output(
                 ['python3', '-c', code], universal_newlines=True, stderr=subprocess.STDOUT, timeout=timeOut)
         else:
-            output = subprocess.check_output(
-                ['python', '-c', code], universal_newlines=True, stderr=subprocess.STDOUT, timeout=timeOut)
-        data.time=time.time()-timeStart
+            data.code = code
+            safeChack(data)
+            if(data.safe):
+                output = subprocess.check_output(
+                    ['python', '-c', data.code], universal_newlines=True, stderr=subprocess.STDOUT, timeout=timeOut)
+                if(output[-1] == '\n'):
+                    output = output[:-1]
+                if(output == ''):
+                    output = '请输入代码'
+                    data.time = 0
+                data.output = output
+        data.time = time.time()-timeStart
     except subprocess.TimeoutExpired as e:
-        output = '计算超时,请简化你的代码\n运行时间不得超过 '+str(e.timeout)+' 秒'
-        data.time= "3"
+        data.output = '计算超时,请简化你的代码\n运行时间不得超过 '+str(e.timeout)+' 秒'
+        data.time = "3"
     except Exception as e:
         output = e.output
-    if(output[-1] == '\n'):
-        output = output[:-1]
-    if(output == ''):
-        output = '请输入代码'
-        data.time=0
-    data.output=output
+
     return data
 
 
@@ -56,7 +73,8 @@ def api(request):
     # 解析代码的api
     code = request.POST.get('code')
     data = run_code(code)
-    return JsonResponse({'output': data.output,'time':data.time})
+    return JsonResponse({'output': data.output, 'time': data.time})
+
 
 class Post():
     title = ""
