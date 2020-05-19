@@ -61,7 +61,6 @@ def run_code(code):
         data.time = "3"
     except Exception as e:
         output = e.output
-        translate(output)
     if(output[-1] == '\n'):
         output = output[:-1]
     if(output == ''):
