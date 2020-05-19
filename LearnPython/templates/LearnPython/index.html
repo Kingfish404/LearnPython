@@ -151,7 +151,7 @@
                                 <p>第一次来请点这里<br>引领你进入编程的大门</p>
                                 </a>
                             </li>
-                            <li class="PythonRoad">
+                            <li class="PythonRoad" onclick="toRoad()">
                                 <em>
                                         <svg t="1589714602940" class="icon" viewBox="0 0 1024 1024" version="1.1"
                                             xmlns="http://www.w3.org/2000/svg" p-id="4895" width="200" height="200">
@@ -195,10 +195,8 @@
                                                 fill="#FFC107" p-id="4908"></path>
                                         </svg>
                                     </em>
-                                <a href="#"></a>
                                 <h4>Python学习路径</h4>
                                 <p>对学习感到迷茫了么<br>点我就好</p>
-                                </a>
                             </li>
                             <li class="gfwd" onclick="toOffcial()">
                                 <em>
@@ -276,7 +274,7 @@
                 </div>
                 <iframe class="siteIframe" src="/loading" frameborder="0" target="_self" id='iframe' style="margin-top: 5px;"></iframe>
             </div>
-            <div class="col-md-6 lab">
+            <div class="col-md-5 lab">
                 <p class="resultTitle">运行结果</p>
                 <p class="costTimeTitle">运行用时:&nbsp;&nbsp;<span class="time"></span>s</p>
                 <div id="out" class="col-lg-12"><textarea id="output" disabled placeholder="点击 |运行|,输出的结果就会在这里显示啦&#10;(没有变化的话，是不是忘记print了)" class="form-control"></textarea>
@@ -360,6 +358,10 @@
 
         function toIndoor() {
             toUrlPage("/doc/Python入门")
+        }
+
+        function toRoad() {
+            toUrlPage("/road")
         }
 
         function toManual() {

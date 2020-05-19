@@ -5,9 +5,7 @@
     padding: 0;
 }
 
-
 /* 浏览器滚动条样式 */
-
 
 /* width */
 
@@ -16,14 +14,12 @@
     height: 4px;
 }
 
-
 /* Track */
 
 ::-webkit-scrollbar-track {
     background: rgb(255, 255, 255);
     border-radius: 8px;
 }
-
 
 /* Handle */
 
@@ -32,15 +28,13 @@
     border-radius: 8px;
 }
 
-
 /* Handle on hover */
 
 ::-webkit-scrollbar-thumb:hover {
     background: rgb(162, 162, 163);
 }
 
-html,
-body {
+html, body {
     height: 100%;
     width: 100%;
 }
@@ -82,10 +76,9 @@ header h3 {
     border: 2px solid;
     border-color: aliceblue;
     overflow: auto;
+    margin: auto 1%;
     -webkit-transition: none;
     transition: none;
-    -webkit-transform: rotateY(10deg) translateZ(-100px);
-    transform: rotateY(10deg) translateZ(-100px);
 }
 
 .lab {
@@ -93,13 +86,11 @@ header h3 {
     border: 2px solid;
     border-color: aliceblue;
     overflow: hidden;
-    -webkit-transform: rotateY(10deg) translateZ(-100px);
-    transform: rotateY(10deg) translateZ(-100px);
 }
 
 .doc iframe {
     width: 100%;
-    height: 100%;
+    height: 94%;
 }
 
 .resultTitle {
@@ -168,7 +159,6 @@ header h3 {
         transform: none;
     }
 }
-
 
 /* adapt css */
 

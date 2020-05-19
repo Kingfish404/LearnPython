@@ -16,6 +16,12 @@ class IndexView(generic.ListView):
     def get_queryset(self):
         pass
 
+class RoadView(generic.ListView):
+    template_name = 'LearnPython/road.html'
+
+    def get_queryset(self):
+        pass
+
 class LoadingView(generic.ListView):
     template_name = 'LearnPython/loading.html'
 

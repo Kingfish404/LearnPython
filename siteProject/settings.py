@@ -25,7 +25,7 @@ SECRET_KEY = '7_=rx3hb6(5l@1g9cw^w-vi+pw4$8_jzvi7!ad^oj7@lmi2eu@'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["127.0.0.1","study.kingfish404.cn"]
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 

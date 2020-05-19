@@ -8,6 +8,7 @@
     <link href="https://cdn.bootcss.com/highlight.js/10.0.0/styles/github.min.css" rel="stylesheet">
     <style>
         #content {
+            display: none;
             white-space: pre-wrap;
         }
         /* 浏览器滚动条样式 */
@@ -70,10 +71,7 @@
     <div id="content">{{ post.body |safe }}</div>
     <script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/10.0.0/highlight.min.js"></script>
     <script src="https://cdn.bootcss.com/highlightjs-line-numbers.js/2.7.0/highlightjs-line-numbers.min.js"></script>
-    <script>
-        hljs.initHighlightingOnLoad();
-        hljs.initLineNumbersOnLoad();
-    </script>
+
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script>
         var md = document.getElementById('content').innerText;
@@ -84,6 +82,11 @@
         document.getElementById('content').innerHTML =
             marked(md);
         document.getElementById('content').style.whiteSpace = 'initial';
+        document.getElementById("content").style.display = "block";
+    </script>
+    <script>
+        hljs.initHighlightingOnLoad();
+        hljs.initLineNumbersOnLoad();
     </script>
 </body>
 

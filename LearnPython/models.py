@@ -16,6 +16,7 @@ import re
 
 timeOut = 3
 
+
 class Data:
     code = str()
     output = str()
@@ -23,13 +24,18 @@ class Data:
     safe = bool()
 
 # 对代码进行安全检测
+
+
 def safeChack(data):
-    disableShell = ['ps','cat','rm','cd','ls','dir','mv','cmd','reboot']
+    disableShell = ['ps', 'cat', 'rm', 'cd',
+                    'ls', 'dir', 'mv', 'cmd', 'reboot']
     # 对不安全命令进行警告替换
     for shell in disableShell:
-        _str = re.subn(r'system(.*[\"\'].*'+shell+'.*[\"\'].*)',"system(\"echo 为了系统安全,shell的 "+shell+" 命令是不允许使用的\"))",data.code,0,re.IGNORECASE)
-        data.code=_str[0]
+        _str = re.subn(r'system(.*[\"\'].*'+shell+'.*[\"\'].*)',
+                       "system(\"echo 为了系统安全,shell的 "+shell+" 命令是不允许使用的\"))", data.code, 0, re.IGNORECASE)
+        data.code = _str[0]
     data.safe = True
+
 
 def run_code(code):
     data = Data()
@@ -55,6 +61,7 @@ def run_code(code):
         data.time = "3"
     except Exception as e:
         output = e.output
+        translate(output)
     if(output[-1] == '\n'):
         output = output[:-1]
     if(output == ''):
@@ -86,7 +93,8 @@ class Post():
             path = self.__PostPath+str(postName)+'.md'
             f = open(path, 'r', encoding='utf-8', newline='\n')
         except FileNotFoundError as e:
-            self.body = '# 404, '+str(postName)+' file not found'
+            str404 = "好像到了奇怪的地方"
+            self.body = '# 404, '+str(postName)+' file not found\n'+str404
             self.reformat2markdown()
         except Exception as e:
             self.body = "Error"
