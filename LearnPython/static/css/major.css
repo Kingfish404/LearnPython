@@ -134,7 +134,7 @@ header h3 {
 }
 
 .tips {
-    width: 50%;
+    width: 100%;
     bottom: 0;
     margin-bottom: 2%;
 }
@@ -152,17 +152,22 @@ header h3 {
 
 #run {
     width: 20%;
-    margin: 1% auto;
+    margin: 2% auto;
 }
 
 #out {
     padding: initial;
 }
 
+.CodeMirror{
+    box-shadow: 0 5px 5px 0 rgba(210, 208, 208, 0.52);
+}
+
 #output {
     margin-bottom: 10%;
     font-size: large;
     resize: none;
+    box-shadow: 0 5px 5px 0 rgba(210, 208, 208, 0.52);
 }
 
 @media screen and (max-width: 1080px) {
