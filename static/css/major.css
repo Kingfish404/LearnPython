@@ -166,16 +166,12 @@ header h3 {
 }
 
 @media screen and (max-width: 1080px) {
-    .start {
-    }
     .tips {
         width: 100%;
     }
 }
 
 @media screen and (max-width: 768px) {
-    .start {
-    }
     .doc {
         -webkit-transform: none;
         transform: none;
@@ -195,8 +191,6 @@ header h3 {
     }
     header h3 {
         font-size: large;
-    }
-    .start {
     }
     .doc {
         height: 45%;
