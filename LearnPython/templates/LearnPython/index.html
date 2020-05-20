@@ -8,10 +8,10 @@
     <title>Hello Python</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="static\css\major.css">
-    <link rel="stylesheet" type="text/css" href="static\css\codemirror.css">
     <link rel="stylesheet" type="text/css" href="static/js/cm/addon/hint/show-hint.css">
     <link rel="stylesheet" type="text/css" href="static/js/cm/theme/base16-light.css">
+    <link rel="stylesheet" type="text/css" href="static\css\major.css">
+    <link rel="stylesheet" type="text/css" href="static\css\codemirror.css">
     <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
     <script src="static\js\require.js" data-main="static\js\main"></script>
 </head>
@@ -57,7 +57,7 @@
                         }
 
                         .stage2 {
-                            padding: 2% 0 2%;
+                            padding: 0 0 2%;
                             text-align: center;
                         }
 
@@ -281,7 +281,7 @@
                 <p class="resultTitle">运行结果</p>
                 <p class="costTimeTitle">运行用时:&nbsp;&nbsp;<span class="time"></span>s</p>
                 <div id="out" class="col-lg-12"><textarea id="output" disabled
-                        placeholder="点击 |运行|,输出的结果就会在这里显示啦&#10;(没有变化的话，是不是忘记print了)" class="form-control"></textarea>
+                        placeholder="点击运行,输出的结果就会在这里显示啦&#10;(没有变化的话，是不是忘记print了)" class="form-control"></textarea>
                 </div>
                 <!-- 代码输入部分 -->
                 <p class="h3">
@@ -293,13 +293,11 @@
                 <div class="text-right"><button id="run" type="button" class="btn btn-primary ">运行</button></div>
 
 
-                <div class="text-center tips">
+                <div class="text-left tips">
                     <p class="h3 text-left">提示</p>
-                    <div class="alert alert-dark" role="alert">
-                        如果只输入一行，可以直接计算表达式
-                    </div>
-                    <div class="alert alert-dark" role="alert">
-                        按下键盘上的Enter键，可以换行，编辑器会自动缩放的哦
+                    <div class="tip alert alert-dark" role="alert">
+                        <li>如果只输入一行，可以直接计算表达式</li>
+                        <li>按下键盘上的Enter键，可以换行，输入区会自动适应大小</li>
                     </div>
                 </div>
 
@@ -311,14 +309,36 @@
         integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
         crossorigin="anonymous"></script>
     <script>
-        $('.siteIframe').hide();
-        $(".start").hide();
-        $(".start").css("display","auto")
-        var lastCode = "";
-
+        // 工具函数
         function sleep(d) {
             for (var t = Date.now(); Date.now() - t <= d;);
         }
+
+        function IsPC() {
+            var userAgentInfo = navigator.userAgent;
+            var Agents = ["Android", "iPhone",
+                "SymbianOS", "Windows Phone",
+                "iPad", "iPod"];
+            var flag = true;
+            for (var v = 0; v < Agents.length; v++) {
+                if (userAgentInfo.indexOf(Agents[v]) > 0) {
+                    flag = false;
+                    break;
+                }
+            }
+            return flag;
+        }
+
+        // 初始化
+        $('.siteIframe').hide();
+        $(".start").hide();
+        $(".start").css("display", "auto")
+        var lastCode = "";
+
+        if (IsPC()) {
+            document.getElementById('output').rows = 6;
+        }
+
 
         function get_text_rows(text) {
             return text.split("\n").length;
@@ -326,10 +346,12 @@
 
         function changeSize(ele, rows) {
             if (rows > 50) {
-                $(ele).height(window.screen.availHeight / 2);
-            } else {
+                $(ele).height(window.screen.availHeight / 2.8);
+            } else if (rows > 5) {
                 $(ele).height("auto");
-                ele.rows = rows + 1;
+                ele.rows = rows;
+            } else {
+                ele.rows = 6;
             }
         }
 
@@ -398,10 +420,16 @@
             $(".doc").css("overflow", "hidden");
             $(".start").show();
         }
+        function ClearBr(key) {
+            key = key.replace(/<\/?.+?>/g, "");
+            key = key.replace(/[\r\n]/g, "");
+            return key;
+        }
 
 
         $('#run').click(function () {
             var code = getCode();
+
             if (!code || lastCode == code) {
                 return;
             }

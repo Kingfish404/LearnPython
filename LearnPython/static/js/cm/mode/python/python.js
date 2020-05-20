@@ -1,14 +1,14 @@
 // CodeMirror, copyright (c) by Marijn Haverbeke and others
 // Distributed under an MIT license: https://codemirror.net/LICENSE
 
-(function(mod) {
+(function (mod) {
     if (typeof exports == "object" && typeof module == "object") // CommonJS
         mod(require("../../lib/codemirror"));
     else if (typeof define == "function" && define.amd) // AMD
         define(["../../lib/codemirror"], mod);
     else // Plain browser env
         mod(CodeMirror);
-})(function(CodeMirror) {
+})(function (CodeMirror) {
     "use strict";
 
     function wordRegexp(words) {
@@ -16,12 +16,6 @@
     }
 
     var wordOperators = wordRegexp(["and", "or", "not", "is"]);
-    var commonKeywords = ["as", "assert", "break", "class", "continue",
-        "def", "del", "elif", "else", "except", "finally",
-        "for", "from", "global", "if", "import",
-        "lambda", "pass", "raise", "return",
-        "try", "while", "with", "yield", "in"
-    ];
     var commonBuiltins = ["abs", "all", "any", "bin", "bool", "bytearray", "callable", "chr",
         "classmethod", "compile", "complex", "delattr", "dict", "dir", "divmod",
         "enumerate", "eval", "filter", "float", "format", "frozenset",
@@ -34,19 +28,25 @@
         "type", "vars", "zip", "__import__", "NotImplemented",
         "Ellipsis", "__debug__"
     ];
+    var commonKeywords = ["as", "assert", "break", "class", "continue",
+        "def", "del", "elif", "else", "except", "finally",
+        "for", "from", "global", "if", "import",
+        "lambda", "pass", "return", "raise",
+        "try", "while", "with", "yield", "in"
+    ];
     CodeMirror.registerHelper("hintWords", "python", commonKeywords.concat(commonBuiltins));
 
     function top(state) {
         return state.scopes[state.scopes.length - 1];
     }
 
-    CodeMirror.defineMode("python", function(conf, parserConf) {
+    CodeMirror.defineMode("python", function (conf, parserConf) {
         var ERRORCLASS = "error";
 
         var delimiters = parserConf.delimiters || parserConf.singleDelimiters || /^[\(\)\[\]\{\}@,:`=;\.\\]/;
         //               (Backwards-compatibility with old, cumbersome config system)
         var operators = [parserConf.singleOperators, parserConf.doubleOperators, parserConf.doubleDelimiters, parserConf.tripleDelimiters,
-            parserConf.operators || /^([-+*/%\/&|^]=?|[<>=]+|\/\/=?|\*\*=?|!=|[~!@]|\.\.\.)/
+        parserConf.operators || /^([-+*/%\/&|^]=?|[<>=]+|\/\/=?|\*\*=?|!=|[~!@]|\.\.\.)/
         ]
         for (var i = 0; i < operators.length; i++)
             if (!operators[i]) operators.splice(i--, 1)
@@ -84,7 +84,7 @@
         function tokenBase(stream, state) {
             var sol = stream.sol() && state.lastToken != "\\"
             if (sol) state.indent = stream.indentation()
-                // Handle scope changes
+            // Handle scope changes
             if (sol && top(state).type == "py") {
                 var scopeOffset = top(state).offset;
                 if (stream.eatSpace()) {
@@ -194,7 +194,7 @@
             var OUTCLASS = "string";
 
             function tokenNestedExpr(depth) {
-                return function(stream, state) {
+                return function (stream, state) {
                     var inner = tokenBaseInner(stream, state)
                     if (inner == "punctuation") {
                         if (stream.current() == "{") {
@@ -351,7 +351,7 @@
         }
 
         var external = {
-            startState: function(basecolumn) {
+            startState: function (basecolumn) {
                 return {
                     tokenize: tokenBase,
                     scopes: [{ offset: basecolumn || 0, type: "py", align: null }],
@@ -362,7 +362,7 @@
                 };
             },
 
-            token: function(stream, state) {
+            token: function (stream, state) {
                 var addErr = state.errorToken;
                 if (addErr) state.errorToken = false;
                 var style = tokenLexer(stream, state);
@@ -376,7 +376,7 @@
                 return addErr ? style + " " + ERRORCLASS : style;
             },
 
-            indent: function(state, textAfter) {
+            indent: function (state, textAfter) {
                 if (state.tokenize != tokenBase)
                     return state.tokenize.isString ? CodeMirror.Pass : 0;
 
@@ -398,7 +398,7 @@
 
     CodeMirror.defineMIME("text/x-python", "python");
 
-    var words = function(str) { return str.split(" "); };
+    var words = function (str) { return str.split(" "); };
 
     CodeMirror.defineMIME("text/x-cython", {
         name: "python",

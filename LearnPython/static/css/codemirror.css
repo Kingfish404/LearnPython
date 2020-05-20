@@ -4,11 +4,10 @@
     /* Set height, width, borders, and global font properties here */
     font-family: monospace;
     font-size: x-large;
-    min-height: 55px;
+    min-height: 195px;
     color: black;
     direction: ltr;
 }
-
 
 /* PADDING */
 
@@ -17,18 +16,15 @@
     /* Vertical padding around content */
 }
 
-.CodeMirror pre.CodeMirror-line,
-.CodeMirror pre.CodeMirror-line-like {
+.CodeMirror pre.CodeMirror-line, .CodeMirror pre.CodeMirror-line-like {
     padding: 0 4px;
     /* Horizontal padding of content */
 }
 
-.CodeMirror-scrollbar-filler,
-.CodeMirror-gutter-filler {
+.CodeMirror-scrollbar-filler, .CodeMirror-gutter-filler {
     background-color: white;
     /* The little square between H and V scrollbars */
 }
-
 
 /* GUTTER */
 
@@ -36,6 +32,10 @@
     border-right: 1px solid #ddd;
     background-color: #f7f7f7;
     white-space: nowrap;
+}
+
+.CodeMirror-gutters{
+    background-color: white;
 }
 
 .CodeMirror-linenumbers {}
@@ -56,7 +56,6 @@
     color: #999;
 }
 
-
 /* CURSOR */
 
 .CodeMirror-cursor {
@@ -64,7 +63,6 @@
     border-right: none;
     width: 0;
 }
-
 
 /* Shown when moving in bi-directional text */
 
@@ -122,7 +120,6 @@
     100% {}
 }
 
-
 /* Can style cursor different in overwrite (non-insert) mode */
 
 .CodeMirror-overwrite .CodeMirror-cursor {}
@@ -148,7 +145,6 @@
     position: absolute;
 }
 
-
 /* DEFAULT THEME */
 
 .cm-s-default .cm-header {
@@ -167,8 +163,7 @@
     color: #292;
 }
 
-.cm-header,
-.cm-strong {
+.cm-header, .cm-strong {
     font-weight: bold;
 }
 
@@ -200,17 +195,13 @@
     color: #00f;
 }
 
-.cm-s-default .cm-variable,
-.cm-s-default .cm-punctuation,
-.cm-s-default .cm-property,
-.cm-s-default .cm-operator {}
+.cm-s-default .cm-variable, .cm-s-default .cm-punctuation, .cm-s-default .cm-property, .cm-s-default .cm-operator {}
 
 .cm-s-default .cm-variable-2 {
     color: #05a;
 }
 
-.cm-s-default .cm-variable-3,
-.cm-s-default .cm-type {
+.cm-s-default .cm-variable-3, .cm-s-default .cm-type {
     color: #085;
 }
 
@@ -270,7 +261,6 @@
     border-bottom: 2px solid;
 }
 
-
 /* Default styles for common addons */
 
 div.CodeMirror span.CodeMirror-matchingbracket {
@@ -289,9 +279,7 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {
     background: #DDDCDC;
 }
 
-
 /* STOP */
-
 
 /* The rest of this file contains styles related to the mechanics of
      the editor. You probably shouldn't touch them. */
@@ -322,15 +310,11 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {
     border-right: 30px solid transparent;
 }
 
-
 /* The fake, visible scrollbars. Used to force redraw during scrolling
      before actual scrolling happens, thus preventing shaking and
      flickering artifacts. */
 
-.CodeMirror-vscrollbar,
-.CodeMirror-hscrollbar,
-.CodeMirror-scrollbar-filler,
-.CodeMirror-gutter-filler {
+.CodeMirror-vscrollbar, .CodeMirror-hscrollbar, .CodeMirror-scrollbar-filler, .CodeMirror-gutter-filler {
     position: absolute;
     z-index: 6;
     display: none;
@@ -410,8 +394,7 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {
     /* prevents collapsing before first draw */
 }
 
-.CodeMirror pre.CodeMirror-line,
-.CodeMirror pre.CodeMirror-line-like {
+.CodeMirror pre.CodeMirror-line, .CodeMirror pre.CodeMirror-line-like {
     /* Reset some styles that the rest of the page might have set */
     -moz-border-radius: 0;
     -webkit-border-radius: 0;
@@ -433,8 +416,7 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {
     font-variant-ligatures: contextual;
 }
 
-.CodeMirror-wrap pre.CodeMirror-line,
-.CodeMirror-wrap pre.CodeMirror-line-like {
+.CodeMirror-wrap pre.CodeMirror-line, .CodeMirror-wrap pre.CodeMirror-line-like {
     word-wrap: break-word;
     white-space: pre-wrap;
     word-break: normal;
@@ -466,14 +448,9 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {
     outline: none;
 }
 
-
 /* Force content-box sizing for the elements where we expect it */
 
-.CodeMirror-scroll,
-.CodeMirror-sizer,
-.CodeMirror-gutter,
-.CodeMirror-gutters,
-.CodeMirror-linenumber {
+.CodeMirror-scroll, .CodeMirror-sizer, .CodeMirror-gutter, .CodeMirror-gutters, .CodeMirror-linenumber {
     -moz-box-sizing: content-box;
     box-sizing: content-box;
 }
@@ -521,15 +498,11 @@ div.CodeMirror-dragcursors {
     cursor: crosshair;
 }
 
-.CodeMirror-line::selection,
-.CodeMirror-line>span::selection,
-.CodeMirror-line>span>span::selection {
+.CodeMirror-line::selection, .CodeMirror-line>span::selection, .CodeMirror-line>span>span::selection {
     background: #d7d4f0;
 }
 
-.CodeMirror-line::-moz-selection,
-.CodeMirror-line>span::-moz-selection,
-.CodeMirror-line>span>span::-moz-selection {
+.CodeMirror-line::-moz-selection, .CodeMirror-line>span::-moz-selection, .CodeMirror-line>span>span::-moz-selection {
     background: #d7d4f0;
 }
 
@@ -537,7 +510,6 @@ div.CodeMirror-dragcursors {
     background-color: #ffa;
     background-color: rgba(255, 255, 0, .4);
 }
-
 
 /* Used to force a border model for a node */
 
@@ -552,16 +524,20 @@ div.CodeMirror-dragcursors {
     }
 }
 
-
 /* See issue #2901 */
 
 .cm-tab-wrap-hack:after {
     content: '';
 }
 
-
 /* Help users use markselection to safely style text background */
 
 span.CodeMirror-selectedtext {
     background: none;
+}
+
+@media screen and (max-width: 760px) {
+    .CodeMirror {
+        min-height: 55px;
+    }
 }

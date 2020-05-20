@@ -11,7 +11,7 @@ require([
     lineNumbers: true,
     indentUnit: 4,
     autoCloseBrackets: true,
-    theme: "base16-light"
+    theme: "base16-light",
   });
   editor.on("keypress", function () { editor.showHint() })
   editor.on("change", function () { editor.save() });

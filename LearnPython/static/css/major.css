@@ -5,9 +5,7 @@
     padding: 0;
 }
 
-
 /* 浏览器滚动条样式 */
-
 
 /* width */
 
@@ -16,14 +14,12 @@
     height: 4px;
 }
 
-
 /* Track */
 
 ::-webkit-scrollbar-track {
-    background: rgb(255, 255, 255);
+    background: rgb(248,248,248);
     border-radius: 8px;
 }
-
 
 /* Handle */
 
@@ -32,15 +28,13 @@
     border-radius: 8px;
 }
 
-
 /* Handle on hover */
 
 ::-webkit-scrollbar-thumb:hover {
     background: rgb(162, 162, 163);
 }
 
-html,
-body {
+html, body {
     height: 100%;
     width: 100%;
     font-family: -apple-system, BlinkMacSystemFont, Segoe UI, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Helvetica Neue, Helvetica, Arial, sans-serif;
@@ -72,20 +66,28 @@ header h3 {
     margin: auto 10%;
     color: black;
     display: none;
-    background-color: rgb(233,236,239);
+    background-color: rgb(248,248,248);
     border-radius: 0.2em;
-    border: 1px solid rgb(220, 221, 221);
+    border: 1px solid rgba(220, 221, 221,0.5);
     transition: transform .5s ease;
 }
 
-.start:hover{
+.start:hover {
     transform: scale(1.10);
-}
-.start:active{
-    border: 1px solid black;
+    border: 1px solid rgba(220, 221, 221,0.5);
 }
 
-.start svg{
+.start:link {
+    transform: scale(1.10);
+    border: 1px solid rgba(220, 221, 221,0.5);
+    
+}
+
+.start:active {
+    border: 1px solid rgba(220, 221, 221,0.5);
+}
+
+.start svg {
     height: 80%;
     margin: auto;
 }
@@ -104,7 +106,7 @@ header h3 {
     border: 2px solid;
     border-color: aliceblue;
     overflow: auto;
-    margin: auto 1%;
+    margin: 0 1%;
     -webkit-transition: none;
     transition: none;
 }
@@ -124,19 +126,28 @@ header h3 {
 .resultTitle {
     font-size: 1.75rem;
     float: left;
+    margin-bottom:0.8rem;
 }
 
 .costTimeTitle {
     display: none;
-    line-height: 3.25rem;
+    line-height: 2.25rem;
     float: right;
     margin-bottom: 0;
 }
 
 .tips {
     width: 100%;
+    height: 20%;
     bottom: 0;
     margin-bottom: 2%;
+}
+
+.tip{
+    min-height: 66%;
+    background-color: white;
+    box-shadow: 0 5px 5px 0 rgba(210, 208, 208, 0.52);
+    border: none;
 }
 
 #container {
@@ -151,23 +162,25 @@ header h3 {
 }
 
 #run {
-    width: 20%;
-    margin: 2% auto;
+    width: 100%;
+    margin: 5% auto;
+    background-color: rgb(28, 89, 159);
 }
 
 #out {
     padding: initial;
 }
 
-.CodeMirror{
+.CodeMirror {
     box-shadow: 0 5px 5px 0 rgba(210, 208, 208, 0.52);
 }
 
 #output {
-    margin-bottom: 10%;
+    margin-bottom: 4%;
     font-size: large;
     resize: none;
     box-shadow: 0 5px 5px 0 rgba(210, 208, 208, 0.52);
+    background-color: white;
 }
 
 @media screen and (max-width: 1080px) {
@@ -186,7 +199,6 @@ header h3 {
         transform: none;
     }
 }
-
 
 /* adapt css */
 
