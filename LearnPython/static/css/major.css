@@ -5,7 +5,9 @@
     padding: 0;
 }
 
+
 /* 浏览器滚动条样式 */
+
 
 /* width */
 
@@ -14,12 +16,14 @@
     height: 4px;
 }
 
+
 /* Track */
 
 ::-webkit-scrollbar-track {
     background: rgb(255, 255, 255);
     border-radius: 8px;
 }
+
 
 /* Handle */
 
@@ -28,15 +32,18 @@
     border-radius: 8px;
 }
 
+
 /* Handle on hover */
 
 ::-webkit-scrollbar-thumb:hover {
     background: rgb(162, 162, 163);
 }
 
-html, body {
+html,
+body {
     height: 100%;
     width: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Helvetica Neue, Helvetica, Arial, sans-serif;
 }
 
 header {
@@ -56,10 +63,31 @@ header h3 {
     float: right;
     margin: auto 5%;
     line-height: 200%;
+    user-select: none;
 }
 
 .start {
-    margin-left: 12em;
+    width: 80%;
+    height: 2em;
+    margin: auto 10%;
+    color: black;
+    display: none;
+    background-color: rgb(233,236,239);
+    border-radius: 0.2em;
+    border: 1px solid rgb(220, 221, 221);
+    transition: transform .5s ease;
+}
+
+.start:hover{
+    transform: scale(1.10);
+}
+.start:active{
+    border: 1px solid black;
+}
+
+.start svg{
+    height: 80%;
+    margin: auto;
 }
 
 .official {
@@ -139,7 +167,6 @@ header h3 {
 
 @media screen and (max-width: 1080px) {
     .start {
-        margin-left: 5em;
     }
     .tips {
         width: 100%;
@@ -148,7 +175,6 @@ header h3 {
 
 @media screen and (max-width: 768px) {
     .start {
-        margin-left: 1em;
     }
     .doc {
         -webkit-transform: none;
@@ -160,6 +186,7 @@ header h3 {
     }
 }
 
+
 /* adapt css */
 
 @media screen and (max-width: 760px) {
@@ -170,7 +197,6 @@ header h3 {
         font-size: large;
     }
     .start {
-        margin-left: 0.5em;
     }
     .doc {
         height: 45%;
