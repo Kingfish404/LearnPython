@@ -38,20 +38,33 @@ def safeChack(data):
 
 
 def errorTranslate(errorData):
+    # 错误类型
+    errorTypeReg = [[r'SystemExit:', "解释器请求退出:"],
+                    [r'OverflowError:', "数值运算超出最大限制:"],
+                    [r'IOError:', "	输入/输出操作失败:"],
+                    [r'NameError:', "变量名错误:"],
+                    [r'IndexError:', "索引错误:"],
+                    [r'SyntaxError:', "语法错误:"],
+                    [r'Unbound LocalError:', "未绑定的本地错误:"],
+                    [r'IndentationError:', "缩进错误:"],
+                    [r'NotImplementedError:', "尚未实现的方法:"]
+                    ]
+    
+    # 错误语句
     errorReg = [[r'Traceback \(most recent call last\):', "异常跟踪 (最近一次错误信息):"],
                 [r'line ([1-9]*)', " 第\\1行 "],
                 [r' File', "代码"],
                 [r'in <(.*)>', "位于 <\\1>"],
-                [r'NameError:', "变量名错误:"],
                 [r' name (.*) is not defined', "  \\1  未被定义或者声明"],
-                [r'IndexError:', "索引错误:"],
                 [r'list index out of range', "列表索引超出范围"],
-                [r'SyntaxError:', "语法错误:"],
+                [r'invalid syntax', "无效的语法"],
                 [r'Did you mean ([^?]*)?', "你是想使用 \\1 吗"],
                 [r'Unbound LocalError:', "未绑定的本地错误:"],
                 [r'Missing parentheses in call to (\'print\')',
                  "调用 \\1 时缺少括号"],
                 ]
+    for i in range(len(errorTypeReg)):
+        errorData = re.sub(errorTypeReg[i][0], errorTypeReg[i][1], errorData)
     for i in range(len(errorReg)):
         errorData = re.sub(errorReg[i][0], errorReg[i][1], errorData)
     return errorData

@@ -203,6 +203,11 @@ header h3 {
 /* adapt css */
 
 @media screen and (max-width: 760px) {
+    ::-webkit-scrollbar {
+        width: 5px;
+        height: 4px;
+    }
+    
     header h1 {
         font-size: xx-large;
     }
