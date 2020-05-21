@@ -336,7 +336,13 @@
         var lastCode = "";
 
         if (IsPC()) {
-            document.getElementById('output').rows = 6;
+            var rows = 6;
+            var line = "\n";
+            for (let index = 0; index < rows - 2; index++) {
+                line += "\n"
+            }
+            $('#code').val(line)
+            document.getElementById('output').rows = rows;
         }
 
 
@@ -351,7 +357,11 @@
                 $(ele).height("auto");
                 ele.rows = rows;
             } else {
-                ele.rows = 6;
+                if (IsPC()) {
+                    ele.rows = 6;
+                } else {
+                    ele.rows = rows+1;
+                }
             }
         }
 
@@ -420,9 +430,20 @@
             $(".doc").css("overflow", "hidden");
             $(".start").show();
         }
+
+        // 如果只有一行有内容，返回该行
         function ClearBr(key) {
-            key = key.replace(/<\/?.+?>/g, "");
-            key = key.replace(/[\r\n]/g, "");
+            var data = key.split("\n");
+            var countOfVale = 0, mark = 0;
+            for (let index = 0; index < data.length; index++) {
+                if (data[index] != "") {
+                    countOfVale++;
+                    mark = index
+                }
+            }
+            if (countOfVale == 1) {
+                return data[mark]
+            }
             return key;
         }
 
@@ -430,17 +451,18 @@
         $('#run').click(function () {
             var code = getCode();
 
+            code = ClearBr(code);
+
             if (!code || lastCode == code) {
                 return;
             }
-
             lastCode = code;
 
             $.ajax({
                 url: '/api/', //代码发送的地址
                 type: 'POST', // 请求类型
                 data: {
-                    'code': getCode()
+                    'code': lastCode
                 }, //调用代码获取函数，获得代码文本
                 dataType: 'json', //期望获取的响应类型为 json
                 success: OutPut // 在请求成功之后调用 OutPut 函数，将结果打印到输出框  })})

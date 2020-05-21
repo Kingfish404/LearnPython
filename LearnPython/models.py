@@ -47,6 +47,7 @@ def run_code(code):
     try:
         data.code = code
         safeChack(data)
+        print(data.code)
         if(data.safe):
             timeStart = time.time()
             if 'linux' in sys.platform:
@@ -61,7 +62,7 @@ def run_code(code):
         data.time = "3"
     except Exception as e:
         output = e.output
-    if(output[-1] == '\n'):
+    if(len(output)>0 and output[-1] == '\n'):
         output = output[:-1]
     if(output == ''):
         output = '请输入代码'
