@@ -11,6 +11,10 @@ import sys
 import os
 import re
 
+import hashlib
+import json
+import requests
+
 # 主要功能函数
 # Major function
 
@@ -94,9 +98,8 @@ def run_code(code):
         output = '计算超时,请简化你的代码\n运行时间不得超过 '+str(e.timeout)+' 秒'
         data.time = "3"
     except Exception as e:
-        # 对错误信息进行翻译处理
-        output = errorTranslate(e.output)
-    if(len(output) > 0 and output[-1] == '\n'):
+        output = translate(e.output)
+    if(output[-1] == '\n'):
         output = output[:-1]
     if(output == ''):
         output = '请输入代码'
@@ -104,6 +107,49 @@ def run_code(code):
     data.output = output
     return data
 
+def translate(output):
+    #register re
+    re_output = r'([a-zA-Z]*?Error|Warning.*):(.*)'
+    #rp_output =r'[a-zA-Z]*?Error|Warning:.*'
+    tr_output = re.compile(re_output,re.S).findall(output)
+    new_tr_output = tr_output[0][0] + ':' +tr_output[0][1]
+    # 有道词典 api
+    url = 'http://api.fanyi.baidu.com/api/trans/vip/translate'
+    # 传输的参数，其中 i 为需要翻译的内容
+    appid = "20200521000464395"
+    salt = "1435660288"
+    key = "IjQ_kAmRPlox3ROV0eL4"
+    q = output
+    sign_str = appid + q + salt + key
+    encode_sign = sign_str.encode(encoding='utf-8')
+    md5 = hashlib.md5()
+    md5.update(encode_sign)
+    sign_md5 = str(md5.hexdigest())
+    key = {
+        'q': q,
+        'from': 'en',
+        "to": "zh",
+        "appid": appid,
+        "salt": salt,
+        "sign": sign_md5,
+    }
+    # key 这个字典为发送给有道词典服务器的内容
+    response = requests.post(url, data=key,headers={'Content-Type':'application/x-www-form-urlencoded'}).text
+    
+    f_output_dict = json.loads(response)
+    results = f_output_dict['trans_result']
+    f_output = ''
+    for result in results:
+        f_output = f_output + result['src'] + '\n' + result['dst'] + '\n'
+    #f_output = f_output_dict['trans_result']
+    #print(f_output_dict)
+        
+    #return re.sub(rp_output,f_output,output)
+    return f_output
+    
+    
+    
+    
 
 @csrf_exempt
 @require_POST
