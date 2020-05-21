@@ -37,8 +37,29 @@ def safeChack(data):
     data.safe = True
 
 
+def errorTranslate(errorData):
+    errorReg = [[r'Traceback \(most recent call last\):', "异常跟踪 (最近一次错误信息):"],
+                [r'line ([1-9]*)', " 第\\1行 "],
+                [r' File', "代码"],
+                [r'in <(.*)>', "位于 <\\1>"],
+                [r'NameError:', "变量名错误:"],
+                [r' name (.*) is not defined', "  \\1  未被定义或者声明"],
+                [r'IndexError:', "索引错误:"],
+                [r'list index out of range', "列表索引超出范围"],
+                [r'SyntaxError:', "语法错误:"],
+                [r'Did you mean ([^?]*)?', "你是想使用 \\1 吗"],
+                [r'Unbound LocalError:', "未绑定的本地错误:"],
+                [r'Missing parentheses in call to (\'print\')',
+                 "调用 \\1 时缺少括号"],
+                ]
+    for i in range(len(errorReg)):
+        errorData = re.sub(errorReg[i][0], errorReg[i][1], errorData)
+    return errorData
+
+
 def run_code(code):
     data = Data()
+    output = str()
     # 在服务器上运行代码
     div = code.split(sep="\n")
     # 如果输入的代码只是一行表达式，那就直接输出计算结果
@@ -47,7 +68,6 @@ def run_code(code):
     try:
         data.code = code
         safeChack(data)
-        print(data.code)
         if(data.safe):
             timeStart = time.time()
             if 'linux' in sys.platform:
@@ -61,8 +81,9 @@ def run_code(code):
         output = '计算超时,请简化你的代码\n运行时间不得超过 '+str(e.timeout)+' 秒'
         data.time = "3"
     except Exception as e:
-        output = e.output
-    if(len(output)>0 and output[-1] == '\n'):
+        # 对错误信息进行翻译处理
+        output = errorTranslate(e.output)
+    if(len(output) > 0 and output[-1] == '\n'):
         output = output[:-1]
     if(output == ''):
         output = '请输入代码'

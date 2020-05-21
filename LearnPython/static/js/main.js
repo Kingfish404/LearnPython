@@ -8,7 +8,6 @@ require([
       version: 3,
       singleLineStringErrors: false
     },
-    lineNumbers: true,
     indentUnit: 4,
     autoCloseBrackets: true,
     theme: "base16-light",
