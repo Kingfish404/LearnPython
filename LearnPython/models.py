@@ -140,7 +140,7 @@ def translate(output):
     results = f_output_dict['trans_result']
     f_output = ''
     for result in results:
-        f_output = f_output + result['src'] + '\n' + result['dst'] + '\n'
+        f_output = f_output  + result['dst'] + '\n'
     #f_output = f_output_dict['trans_result']
     #print(f_output_dict)
         
