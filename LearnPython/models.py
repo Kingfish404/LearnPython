@@ -46,24 +46,30 @@ def errorTranslate(errorData):
     errorTypeReg = [[r'SystemExit:', "解释器请求退出:"],
                     [r'OverflowError:', "数值运算超出最大限制:"],
                     [r'IOError:', "	输入/输出操作失败:"],
-                    [r'NameError:', "变量名错误:"],
+                    [r'NameError:', "名称错误:"],
                     [r'IndexError:', "索引错误:"],
                     [r'SyntaxError:', "语法错误:"],
                     [r'Unbound LocalError:', "未绑定的本地错误:"],
                     [r'IndentationError:', "缩进错误:"],
-                    [r'NotImplementedError:', "尚未实现的方法:"]
+                    [r'NotImplementedError:', "尚未实现的方法:"],
+                    [r'ZeroDivisionError:', "除零错误:"],
+                    [r'AttributeError:', "对象没有这个属性:"],
+                    [r'ImportError:', "导入失败:"],
+                    [r'ModuleNotFoundError:', "模块错误:"]
                     ]
-    
+
     # 错误语句
     errorReg = [[r'Traceback \(most recent call last\):', "异常跟踪 (最近一次错误信息):"],
                 [r'line ([1-9]*)', " 第\\1行 "],
                 [r' File', "代码"],
                 [r'in <(.*)>', "位于 <\\1>"],
                 [r' name (.*) is not defined', "  \\1  未被定义或者声明"],
+                [r'No module named (\'.*\')', "没有 \\1 这个模块"],
                 [r'list index out of range', "列表索引超出范围"],
                 [r'invalid syntax', "无效的语法"],
                 [r'Did you mean ([^?]*)?', "你是想使用 \\1 吗"],
                 [r'Unbound LocalError:', "未绑定的本地错误:"],
+                [r'division by zero', "除以零"],
                 [r'Missing parentheses in call to (\'print\')',
                  "调用 \\1 时缺少括号"],
                 ]
@@ -98,7 +104,7 @@ def run_code(code):
         output = '计算超时,请简化你的代码\n运行时间不得超过 '+str(e.timeout)+' 秒'
         data.time = "3"
     except Exception as e:
-        output = translate(e.output)
+        output = errorTranslate(e.output)
     if(output[-1] == '\n'):
         output = output[:-1]
     if(output == ''):
@@ -107,12 +113,13 @@ def run_code(code):
     data.output = output
     return data
 
+
 def translate(output):
-    #register re
+    # register re
     re_output = r'([a-zA-Z]*?Error|Warning.*):(.*)'
     #rp_output =r'[a-zA-Z]*?Error|Warning:.*'
-    tr_output = re.compile(re_output,re.S).findall(output)
-    new_tr_output = tr_output[0][0] + ':' +tr_output[0][1]
+    tr_output = re.compile(re_output, re.S).findall(output)
+    new_tr_output = tr_output[0][0] + ':' + tr_output[0][1]
     # 有道词典 api
     url = 'http://api.fanyi.baidu.com/api/trans/vip/translate'
     # 传输的参数，其中 i 为需要翻译的内容
@@ -134,22 +141,20 @@ def translate(output):
         "sign": sign_md5,
     }
     # key 这个字典为发送给有道词典服务器的内容
-    response = requests.post(url, data=key,headers={'Content-Type':'application/x-www-form-urlencoded'}).text
-    
+    response = requests.post(url, data=key, headers={
+                             'Content-Type': 'application/x-www-form-urlencoded'}).text
+
     f_output_dict = json.loads(response)
     results = f_output_dict['trans_result']
     f_output = ''
     for result in results:
-        f_output = f_output  + result['dst'] + '\n'
+        f_output = f_output + result['dst'] + '\n'
     #f_output = f_output_dict['trans_result']
-    #print(f_output_dict)
-        
-    #return re.sub(rp_output,f_output,output)
+    # print(f_output_dict)
+
+    # return re.sub(rp_output,f_output,output)
     return f_output
-    
-    
-    
-    
+
 
 @csrf_exempt
 @require_POST
