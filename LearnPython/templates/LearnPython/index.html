@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Hello Python</title>
-    
+
     <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
@@ -305,7 +305,7 @@
                 <div class="text-right">
                     <button id="run" type="button" class="btn btn-primary ">运行</button>
                     <button id="share" type="button" class="btn btn-primary ">分享</button>
-                    <input id="copyArea" type="text" value=""></input>
+                    <input id="copyArea" class="text-center" type="text" value=""></input>
                     <button id="copyButton" type="button" class="btn btn-primary ">复制</button>
 
                 </div>
@@ -425,7 +425,7 @@
             //决定返回时间多少位小数
             num = num.toFixed(3);
             $(".time").html(num);
-            $(".costTimeTitle").show();
+            $(".costTimeTitle").show(500);
             changeSize(ele, rows);
         }
 
@@ -457,7 +457,7 @@
         // 返回开始界面
         function toStart() {
             $('.siteIframe').hide();
-            $('.startMenu').show();
+            $('.startMenu').show(500);
             $('.siteIframe').attr("src", "/loading")
             $(".doc").css("overflow", "auto");
             //  隐藏开始按钮
@@ -545,8 +545,9 @@
                 document.execCommand('copy');
                 console.log("Copy success");
                 copyArea.val("")
-                $("#copyArea").hide();
-                $("#copyButton").hide();
+                $("#copyArea").val("复制成功,粘贴发送给别人吧");
+                $("#copyArea").show().delay(1000).hide(300);
+                $("#copyButton").show().delay(1000).hide(300);
             }
         })
 
