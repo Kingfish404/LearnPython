@@ -32,6 +32,7 @@ class Data:
 
 def safeChack(data):
     disableShell = ['ps', 'cat', 'rm', 'cd',
+                    'su', 'vi', 'vim', 
                     'ls', 'dir', 'mv', 'cmd', 'reboot']
     # 对不安全命令进行警告替换
     for shell in disableShell:

@@ -136,6 +136,10 @@ header h3 {
     margin-bottom: 0;
 }
 
+.copyArea{
+    display: auto;
+}
+
 .tips {
     width: 100%;
     height: 20%;
@@ -162,11 +166,52 @@ header h3 {
 }
 
 #run {
-    width: 100%;
-    margin: 5% auto;
+    width: 75%;
+    color: #fff;
+    margin: 5% 1%;
+    float: left;
+    background-color: rgb(28, 89, 159);
+    transition: transform 1s ease;
+}
+
+#copyArea{
+    width: 75%;
+    margin: auto 1%;
+    float: left;
+    transition: transform 1s ease;
+}
+
+#copyButton{
+    width: 20%;
+    color: #fff;
+    margin: auto 1%;
+    background-color: rgb(28, 89, 159);
+    transition: transform 1s ease;
+}
+
+#run:hover{
+    border-color: #0062cc;
+    box-shadow: 0 0 0 0.2rem rgba(38,143,255,.5);
+}
+
+#run:focus{
+    box-shadow: none;
+}
+
+#share{
+    width: 20%;
+    margin: 5% 1%;
     background-color: rgb(28, 89, 159);
 }
 
+#share:hover{
+    border-color: #0062cc;
+    box-shadow: 0 0 0 0.2rem rgba(38,143,255,.5);
+}
+
+#share:focus{
+    box-shadow: none;
+}
 #out {
     padding: initial;
 }

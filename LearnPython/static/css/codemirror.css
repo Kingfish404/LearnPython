@@ -291,7 +291,7 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {
 }
 
 .CodeMirror-scroll {
-    overflow: auto !important;
+    overflow: hidden !important;
     /* overflow: scroll !important; */
     /* Things will break if this is overridden */
     /* 30px is the magic margin used to hide the element's real scrollbars */

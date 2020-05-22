@@ -3,9 +3,21 @@
 
 <head>
     <meta charset="utf-8">
+    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Hello Python</title>
+    
+    <meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <meta name="description" content="Hello Pyhton,编程在线学习实验平台">
+    <meta property="og:title" content="Hello Pyhton" />
+    <meta property="og:description" content="Hello Pyhton,编程在线学习实验平台" />
+    <meta property="og:site_name" content="Hellp Python" />
+    <meta property="twitter:site" content="Hello Pyhton" />
+    <meta property="twitter:description" content="Hello Pyhton,编程在线学习实验平台" />
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="static/js/cm/addon/hint/show-hint.css">
@@ -290,17 +302,21 @@
                 <form>
                     <textarea id="code" name="code"></textarea>
                 </form>
-                <div class="text-right"><button id="run" type="button" class="btn btn-primary ">运行</button></div>
+                <div class="text-right">
+                    <button id="run" type="button" class="btn btn-primary ">运行</button>
+                    <button id="share" type="button" class="btn btn-primary ">分享</button>
+                    <input id="copyArea" type="text" value=""></input>
+                    <button id="copyButton" type="button" class="btn btn-primary ">复制</button>
 
+                </div>
 
                 <div class="text-left tips">
                     <p class="h3 text-left">提示</p>
                     <div class="tip alert alert-dark" role="alert">
                         <li>如果只输入一行，可以直接计算表达式</li>
-                        <li>按下键盘上的Enter键，可以换行，输入区会自动适应大小</li>
+                        <li>遇到问题了? 点击分享即可获取分享代码的链接，然后把链接发给他人求助吧</li>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
@@ -329,12 +345,42 @@
             return flag;
         }
 
+        function getQueryVariable(variable) {
+            var query = window.location.search.substring(1);
+            var vars = query.split("&");
+            console.log(vars);
+            for (var i = 0; i < vars.length; i++) {
+                var pair = vars[i].split("=");
+                if (pair[0] == variable) { return pair[1]; }
+            }
+            return (false);
+        }
+
         // 初始化
         $('.siteIframe').hide();
         $(".start").hide();
         $(".start").css("display", "auto")
+        $("#copyArea").hide();
+        $("#copyButton").hide();
         var lastCode = "";
 
+        // 代码初始化
+        v = getQueryVariable("v")
+        switch (v) {
+            case "1":
+                var code = getQueryVariable("c")
+                console.log(code)
+                code = decodeURIComponent(code);
+                console.log(code)
+
+                $('#code').val(code)
+                break;
+            default:
+                break;
+        }
+
+
+        // 判断平台是否为PC
         if (IsPC()) {
             var rows = 6;
             document.getElementById('output').rows = rows;
@@ -355,7 +401,7 @@
                 if (IsPC()) {
                     ele.rows = 6;
                 } else {
-                    ele.rows = rows+1;
+                    ele.rows = rows + 1;
                 }
             }
         }
@@ -463,6 +509,47 @@
                 success: OutPut // 在请求成功之后调用 OutPut 函数，将结果打印到输出框  })})
             })
         })
+
+        $('#share').click(function () {
+            var version = "1";
+            var code = getCode();
+            code = ClearBr(code);
+            if (code == "") {
+                return;
+            }
+            code = encodeURIComponent(code)
+            $("#copyArea").show();
+            $("#copyButton").show();
+            copyArea = $("#copyArea")
+            var shareUrl = window.location.href;
+            shareUrl = shareUrl.split('?');
+            shareUrl = shareUrl[0];
+            shareUrl = shareUrl + "?v=" + version + "&c=" + code;
+
+
+
+            copyArea.val("");
+
+            copyArea.val(shareUrl);
+
+            console.log(shareUrl);
+
+
+        })
+        $("#copyButton").click(function () {
+            copyArea = $("#copyArea")
+
+            copyArea.select()
+
+            if (document.execCommand('copy')) {
+                document.execCommand('copy');
+                console.log("Copy success");
+                copyArea.val("")
+                $("#copyArea").hide();
+                $("#copyButton").hide();
+            }
+        })
+
         $('.start').click(function () {
             toStart();
         })
