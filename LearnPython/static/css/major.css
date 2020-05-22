@@ -176,8 +176,10 @@ header h3 {
 
 #copyArea{
     width: 75%;
-    margin: auto 1%;
+    margin: 3px 1%;
+    font-size: large;
     float: left;
+    border-radius: 4px;
     transition: transform 1s ease;
 }
 
