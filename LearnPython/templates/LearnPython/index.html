@@ -9,7 +9,7 @@
     <title>Hello Python</title>
 
     <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
 
     <meta name="description" content="Hello Pyhton,编程在线学习实验平台">
     <meta property="og:title" content="Hello Pyhton" />
@@ -348,7 +348,6 @@
         function getQueryVariable(variable) {
             var query = window.location.search.substring(1);
             var vars = query.split("&");
-            console.log(vars);
             for (var i = 0; i < vars.length; i++) {
                 var pair = vars[i].split("=");
                 if (pair[0] == variable) { return pair[1]; }
@@ -363,22 +362,6 @@
         $("#copyArea").hide();
         $("#copyButton").hide();
         var lastCode = "";
-
-        // 代码初始化
-        v = getQueryVariable("v")
-        switch (v) {
-            case "1":
-                var code = getQueryVariable("c")
-                console.log(code)
-                code = decodeURIComponent(code);
-                console.log(code)
-
-                $('#code').val(code)
-                break;
-            default:
-                break;
-        }
-
 
         // 判断平台是否为PC
         if (IsPC()) {
@@ -416,18 +399,7 @@
             return $('#code').val()
         }
 
-        function OutPut(data) {
-            var ele = document.getElementById('output');
-            ele.value = data['output'];
-            rows = get_text_rows(data['output']);
-            var num = Number(data['time']);
 
-            //决定返回时间多少位小数
-            num = num.toFixed(3);
-            $(".time").html(num);
-            $(".costTimeTitle").show(500);
-            changeSize(ele, rows);
-        }
 
         // 页面的跳转函数,隐藏开始菜单，显示iframe，设置.doc的overflow:auto
         function toUrlPage(url) {
@@ -488,6 +460,18 @@
             return key;
         }
 
+        function OutPut(data) {
+            var ele = document.getElementById('output');
+            ele.value = data['output'];
+            rows = get_text_rows(data['output']);
+            var num = Number(data['time']);
+
+            //决定返回时间多少位小数
+            num = num.toFixed(3);
+            $(".time").html(num);
+            $(".costTimeTitle").show(500);
+            changeSize(ele, rows);
+        }
 
         $('#run').click(function () {
             var code = getCode();
@@ -510,6 +494,15 @@
             })
         })
 
+        function UrlOutPut(data) {
+            console.log(data)
+            if (data['code'] != "200") {
+                return;
+            }
+            copyArea = $("#copyArea")
+            copyArea.val(data['url'])
+        }
+
         $('#share').click(function () {
             var version = "1";
             var code = getCode();
@@ -526,9 +519,21 @@
             shareUrl = shareUrl[0];
             shareUrl = shareUrl + "?v=" + version + "&c=" + code;
 
-
-
             copyArea.val("");
+
+            // $.ajax({
+            //     url: 'https://api.d5.nz/api/dwz/url.php', //代码发送的地址
+            //     type: 'GET', // 请求类型
+            //     data: {
+            //         'url': shareUrl
+            //     }, //调用代码获取函数，获得代码文本
+            //     dataType: 'json', //期望获取的响应类型为 json
+            //     success: UrlOutPut // 在请求成功之后调用 OutPut 函数，将结果打印到输出框  })})
+            // })
+
+            if (copyArea.val() != "") {
+                return;
+            }
 
             copyArea.val(shareUrl);
 
@@ -560,6 +565,22 @@
         $('.manual').click(function () {
             toManual();
         })
+
+        // 代码初始化
+        v = getQueryVariable("v")
+        switch (v) {
+            case "1":
+                var code = getQueryVariable("c")
+                console.log(code)
+                code = decodeURIComponent(code);
+                console.log(code)
+
+                $('#code').val(code)
+                break;
+            default:
+                $('#code').val("print('hello wolrd!')")
+                break;
+        }
     </script>
 </body>
 
