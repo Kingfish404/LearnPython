@@ -1,48 +1,39 @@
 # Python 入门
 
-Python是一种简单易学，功能强大的编程语言，它有高效率的高层数据结构，简单而有效地实现面向对象编程。Python简洁的语法和对动态输入的支持，再加上解释性语言的本质，使得它在大多数编程语言的使用场景中都堪称最优解。
+### 为什么选 Python？
+**简单易学，功能强大**的，有高效率的高层数据结构，简单而有效地实现面向对象编程。
 
-本部分面向Python初学者，提供知识入门的课程，可以帮助你快速入门。课程还为零基础人士进行了特别优化，涵盖几乎所有初学者必备知识点。
+Python简洁的语法和对动态输入的支持，再加上解释性语言的本质，使得它在大多数编程语言的使用场景中都堪称最优解。
+
+本部分面向Python初学者，提供知识入门的课程，可以帮助你快速入门。
 
 
-### IDE
+### IDE 集成开发环境
 
-IDE可以选择[PyCharm](https://www.jetbrains.com/pycharm/download/#section=mac)，PyCharm有两个版本，专业版(收费)和社区版(免费)，个人选择社区版就行了，基本功能都有。专业版提供Django、web2py框架支持，提供了远程调试，虚拟化部署等功能。
+IDE的意思是集成开发环境的意思，就是你写代码的软件
 
-笔者用的比较多的IDE是[VSCode](https://code.visualstudio.com/)，简单的自动补全对我来说就够了。
+    在HelloPython平台，我们提供了一个虚拟的开发环境，你可以在里面以脚本的方式运行你写的Pyhton软件
+
+你可以选择在你自己的电脑上安装[PyCharm](https://www.jetbrains.com/pycharm/download/#section=mac)或者[VSCode](https://code.visualstudio.com/)，把代码复制到电脑上的文件夹，建一个文本文件保存，就如helloworld.py这样命名.
 
 ### Hello world
 
-新建文件hello_world.py，修改为可执行权限
+你可以称Python为脚本语言，那我我们就在旁边的实验区写下你的第一行Python代码吧(默认应该是写好了的)
 
-```
-➜  ~ mkdir ~/Desktop/py-scripts 
-➜  ~ touch ~/Desktop/py-scripts/hello-world.py
-➜  ~ chmod 777 ~/Desktop/py-scripts/hello-world.py 
-```
-修改hello-world.py，内容如下
-
-```
-#!/usr/bin/env python3
- 
+```Python
 print("Hello, World!")
 ```
 
-执行这个脚本：
+点击运行按钮运行
 
+输出结果如下
 ```
-➜  ~ python3 ~/Desktop/py-scripts/hello-world.py 
-Hello, World!
-```
-
-第一行的语法`#!`是告诉系统用python3解释器来执行这个脚本，这样就可以直接执行：
-
-```
-~/Desktop/py-scripts/hello-world.py
-Hello, World!
+Hello world
 ```
 
-### 基础语法
+[前往目录](/doc/Pyhton入门_0)
+
+<!-- ### 基础语法
 
 **注释**
 
@@ -62,6 +53,7 @@ Hello, World!
 和其他语言用大括号来区分代码块不同，python用缩进来表示代码块，空格和Tab均可，如果是空格要保证同一代码块的空格数量相同。
 
 ```
+s = 1
 if s > 0:
 	print("1")
 else:
@@ -72,9 +64,13 @@ else:
 
 可以通过help查看函数定义：
 
+```Python
+help(print)
 ```
-➜  python3
->>> help(print)
+
+输出结果如下
+```
+Help on built-in function print in module builtins:
 
 print(...)
     print(value, ..., sep=' ', end='\n', file=sys.stdout, flush=False)
@@ -685,4 +681,4 @@ if __name__ == '__main__':
    log()
 
 ```
-
+ -->

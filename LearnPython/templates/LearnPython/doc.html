@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,41 +12,31 @@
             width: 90%;
             margin: auto;
         }
-
         /* 浏览器滚动条样式 */
-        /* width */
-
         ::-webkit-scrollbar {
             width: 10px;
             height: 4px;
         }
-
         /* Track */
-
         ::-webkit-scrollbar-track {
             background: rgb(255, 255, 255);
             border-radius: 8px;
         }
-
         /* Handle */
-
         ::-webkit-scrollbar-thumb {
             background: rgb(201, 201, 202);
             border-radius: 8px;
         }
 
         /* Handle on hover */
-
         ::-webkit-scrollbar-thumb:hover {
             background: rgb(162, 162, 163);
         }
-
         .codehilite {
             padding: 0;
         }
 
         /* for block of numbers */
-
         .hljs-ln-numbers {
             -webkit-touch-callout: none;
             -webkit-user-select: none;
@@ -61,23 +50,18 @@
             vertical-align: top;
             padding-right: 5px;
         }
-
         .hljs-ln-n {
             width: 30px;
         }
-
         /* for block of code */
-
         .hljs-ln .hljs-ln-code {
             padding-left: 10px;
             white-space: pre;
         }
-
         @media screen and (max-width: 760px) {
             #content {
                 width: 95%;
             }
-
             ::-webkit-scrollbar {
                 width: 5px;
                 height: 4px;
@@ -85,12 +69,10 @@
         }
     </style>
 </head>
-
 <body>
     <div id="content">{{ post.body |safe }}</div>
     <script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/10.0.0/highlight.min.js"></script>
     <script src="https://cdn.bootcss.com/highlightjs-line-numbers.js/2.7.0/highlightjs-line-numbers.min.js"></script>
-
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script>
         var md = document.getElementById('content').innerText;
@@ -108,5 +90,4 @@
         hljs.initLineNumbersOnLoad();
     </script>
 </body>
-
 </html>
