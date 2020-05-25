@@ -24,14 +24,16 @@ IDE的意思是集成开发环境的意思，就是你写代码的软件
 print("Hello, World!")
 ```
 
-点击运行按钮运行
+点击运行按钮运行,运行结果应该如下
 
-输出结果如下
 ```
 Hello world
 ```
 
-[前往目录](/doc/Pyhton入门_0)
+## 学习目录
+
+1. [【Pyhton第1课】Print](/doc/Pyhton入门_1)
+1. [【Pyhton第2课】变量](/doc/Pyhton入门_2)
 
 <!-- ### 基础语法
 
