@@ -16,7 +16,7 @@
 
 系统：Linux 或者 Window10
 
-软件：Python 以及 Django 与 Sqlite3
+软件：Python3.6+ 以及 Django 与 Sqlite3
 
 ### Debian/Ubuntu
 ```shell
@@ -48,7 +48,7 @@ python manage.py runserver
 
 ## 测试方法
 ```shell
-python3 manage.py test
+python manage.py test
 # 或者
 python3 manage.py test
 ```

@@ -5,10 +5,10 @@
 
 本部分包含了一系列免费的Python课程，视频不但包括介绍一些基础的Python理论知识的，也包括引导到在实际案例中的应用的，可以让大家慢慢的对Python有越来越深的理解也能一步一步加强对Python内容的应用能力。
 
-## Pyhthon 网站
+## Python 相关网站
+建议复制到新标签页打开
 
-* [Python官网](https://www.python.org/)
-* [菜鸟教程](https://www.runoob.com/python3/python3-tutorial.html)
+* Python官网：https://www.python.org
 
 ## Python相关视频
 

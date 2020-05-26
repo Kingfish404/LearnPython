@@ -3,22 +3,21 @@
 ### 为什么选 Python？
 **简单易学，功能强大**的，有高效率的高层数据结构，简单而有效地实现面向对象编程。
 
-Python简洁的语法和对动态输入的支持，再加上解释性语言的本质，使得它在大多数编程语言的使用场景中都堪称最优解。
-
 本部分面向Python初学者，提供知识入门的课程，可以帮助你快速入门。
 
 
-### IDE 集成开发环境
 
-IDE的意思是集成开发环境的意思，就是你写代码的软件
+### IDE
 
-    在HelloPython平台，我们提供了一个虚拟的开发环境，你可以在里面以脚本的方式运行你写的Pyhton软件
+IDE的意思是集成开发环境的意思
 
-你可以选择在你自己的电脑上安装[PyCharm](https://www.jetbrains.com/pycharm/download/#section=mac)或者[VSCode](https://code.visualstudio.com/)，把代码复制到电脑上的文件夹，建一个文本文件保存，就如helloworld.py这样命名.
+在HelloPython平台，我们提供了一个虚拟的开发环境，你可以在里面以脚本的方式运行你写的Pyhton软件
+
+你也可以选择在你自己的电脑上安装**PyCharm**或者**VSCode**，把代码复制到电脑上的文件夹，建一个文本文件保存，就如helloworld.py这样命名.
 
 ### Hello world
 
-你可以称Python为脚本语言，那我我们就在旁边的实验区写下你的第一行Python代码吧(默认应该是写好了的)
+你可以称Python为脚本语言，那现在就在旁边的实验区写下你的第一行Python代码吧(默认应该是写好了的)
 
 ```Python
 print("Hello, World!")
@@ -30,10 +29,12 @@ print("Hello, World!")
 Hello world
 ```
 
-## 学习目录
+# 学习目录
 
 1. [【Pyhton第1课】Print](/doc/Pyhton入门_1)
 1. [【Pyhton第2课】变量](/doc/Pyhton入门_2)
+1. [【Pyhton第3课】基本运算](/doc/Pyhton入门_3)
+1. [【Pyhton第4课】条件与循环](/doc/Pyhton入门_4)
 
 <!-- ### 基础语法
 

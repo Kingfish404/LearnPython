@@ -1,11 +1,18 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ post.title |safe }}</title>
     <link href="https://cdn.bootcss.com/highlight.js/10.0.0/styles/github.min.css" rel="stylesheet">
     <style>
+        code{
+            font-size: larger;
+        }
+        a{
+            text-decoration: none;
+            color:black;
+        }
         #content {
             display: none;
             white-space: pre-wrap;
@@ -35,7 +42,6 @@
         .codehilite {
             padding: 0;
         }
-
         /* for block of numbers */
         .hljs-ln-numbers {
             -webkit-touch-callout: none;
