@@ -1,5 +1,6 @@
 from django.db import models
 import subprocess
+from subprocess import TimeoutExpired
 from django.http import JsonResponse
 
 from django.views.decorators.http import require_POST
@@ -31,8 +32,7 @@ class Data:
 
 
 def safeChack(data):
-    disableShell = ['ps', 'cat', 'rm', 'cd',
-                    'su', 'vi', 'vim', 
+    disableShell = ['ps', 'cat', 'rm', 'cd', 'vi', 'vim',
                     'ls', 'dir', 'mv', 'cmd', 'reboot']
     # 对不安全命令进行警告替换
     for shell in disableShell:
@@ -84,33 +84,34 @@ def errorTranslate(errorData):
 def run_code(code):
     data = Data()
     output = str()
+    errors = str()
+    pythonV = "python"
     # 在服务器上运行代码
     div = code.split(sep="\n")
     # 如果输入的代码只是一行表达式，那就直接输出计算结果
     if(len(div) == 1 and not 'print' in div[0] and not 'import' in div[0]):
         code = 'print('+code+')'
+    data.code = code
+    safeChack(data)
+    if 'linux' in sys.platform:
+        pythonV = "python3"
+    timeStart = time.time()
+    subp = subprocess.Popen(
+        [pythonV, '-c', data.code], universal_newlines=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, encoding="utf-8")
     try:
-        data.code = code
-        safeChack(data)
-        if(data.safe):
-            timeStart = time.time()
-            if 'linux' in sys.platform:
-                output = subprocess.check_output(
-                    ['python3', '-c', data.code], universal_newlines=True, stderr=subprocess.STDOUT, timeout=timeOut)
-            else:
-                output = subprocess.check_output(
-                    ['python', '-c', data.code], universal_newlines=True, stderr=subprocess.STDOUT, timeout=timeOut)
-            data.time = time.time()-timeStart
-    except subprocess.TimeoutExpired as e:
-        output = '计算超时,请简化你的代码\n运行时间不得超过 '+str(e.timeout)+' 秒'
+        output, errors = subp.communicate(timeout=timeOut)
+        data.time = time.time()-timeStart
+    except TimeoutExpired:
+        output = '计算超时,请检查并简化你的代码\n运行时间不得超过 '+str(timeOut)+' 秒'
         data.time = "3"
     except Exception as e:
-        output = errorTranslate(e.output)
-    if(output[-1] == '\n'):
+        output = errorTranslate(e)
+    finally:
+        subp.kill()
+        if(errors != ""):
+            output = errorTranslate(errors)
+    if(output != '' and output[-1] == '\n'):
         output = output[:-1]
-    if(output == ''):
-        output = '请输入代码'
-        data.time = 0
     data.output = output
     return data
 
