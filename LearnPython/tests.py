@@ -2,8 +2,14 @@ from django.test import SimpleTestCase
 from django.test import TestCase
 from .models import run_code
 from .models import timeOut
-# Create your tests here.
 
+# Create your tests here.
+# 导入设置文件
+
+import sys
+import os
+sys.path.append(os.getcwd())
+from config import *
 
 class models_api_Test(TestCase):
 
@@ -23,4 +29,4 @@ class models_api_Test(TestCase):
             s = 0\nfor i in range(10000):\n\
             t = repeat('func()', 'from __main__ import func', number=100, repeat=500)\n"
         self.assertEqual(
-            run_code(code).output, '计算超时,请检查并简化你的代码\n运行时间不得超过 '+str(timeOut)+' 秒')
+            run_code(code).output, '计算超时,'+timeOutMsg+'\n运行时间不得超过 '+str(timeOut)+' 秒')

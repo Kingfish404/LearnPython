@@ -8,18 +8,20 @@ from django.views.decorators.csrf import csrf_exempt
 
 import markdown
 import time
-import sys
-import os
 import re
 
 import hashlib
 import json
 import requests
 
+# 导入设置文件
+import sys
+import os
+sys.path.append(os.getcwd())
+from config import *
+
 # 主要功能函数
 # Major function
-
-timeOut = 3
 
 
 class Data:
@@ -37,7 +39,7 @@ def safeChack(data):
     # 对不安全命令进行警告替换
     for shell in disableShell:
         _str = re.subn(r'system(.*[\"\'].*'+shell+'.*[\"\'].*)',
-                       "system(\"echo 为了系统安全,shell的 "+shell+" 命令是不允许使用的\"))", data.code, 0, re.IGNORECASE)
+                       "system(\"echo 为了系统安全,shell的 "+shell+" 命令是不允许使用的\")", data.code, 0, re.IGNORECASE)
         data.code = _str[0]
     data.safe = True
 
@@ -96,26 +98,25 @@ def run_code(code):
     safeChack(data)
     if 'linux' in sys.platform:
         pythonV = "python3"
-        
+
     timeStart = time.time()
     # 建立Python子进程
     subp = subprocess.Popen(
-        [pythonV, '-c', data.code], universal_newlines=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, encoding="utf-8")
+        [pythonV, '-c', data.code], universal_newlines=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     try:
         output, errors = subp.communicate(timeout=timeOut)
         data.time = time.time()-timeStart
     except TimeoutExpired:
-        output = '计算超时,请检查并简化你的代码\n运行时间不得超过 '+str(timeOut)+' 秒'
+        output = '计算超时,'+timeOutMsg+'\n运行时间不得超过 '+str(timeOut)+' 秒'
         data.time = "3"
     except Exception as e:
-        output = e
+        output = "内部出现错误"
     finally:
         # 结束子进程
         subp.kill()
         if(errors != ""):
             output = errorTranslate(errors)
-    
-    if(output != '' and output[-1] == '\n'):
+    if( len(output)>0 and output[-1] == '\n'):
         output = output[:-1]
 
     data.output = output
@@ -175,7 +176,7 @@ def api(request):
 class Post():
     title = ""
     body = ""
-    __PostPath = os.getcwd()+"/post/"
+    __PostPath = os.getcwd()+POST
 
     def __str__(self):
         pass
@@ -185,8 +186,7 @@ class Post():
             path = self.__PostPath+str(postName)+'.md'
             f = open(path, 'r', encoding='utf-8', newline='\n')
         except FileNotFoundError as e:
-            str404 = "好像到了奇怪的地方"
-            self.body = '# 404, '+str(postName)+' file not found\n'+str404
+            self.body = Msg404
             self.reformat2markdown()
         except Exception as e:
             self.body = "Error"

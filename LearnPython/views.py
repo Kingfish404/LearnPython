@@ -37,3 +37,9 @@ def doc(request, pk=0):
     # 默认选择前端渲染markdown文本，也可以后端渲染
     # post.reformat2markdown()
     return render(request, 'LearnPython/doc.html', context={'post': post})
+
+def Default(request,pk="404"):
+    post = Post()
+    post.title = pk
+    post.readPost(pk)
+    return render(request, 'LearnPython/doc.html', context={'post': post})
