@@ -483,7 +483,11 @@
 
             code = ClearBr(code);
 
-            if (!code || lastCode == code) {
+            if (!code) {
+                document.getElementById('output').value = '请输入代码后运行'
+                return;
+            }else if(lastCode == code)
+            {
                 return;
             }
             lastCode = code;

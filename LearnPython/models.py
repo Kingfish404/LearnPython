@@ -41,7 +41,6 @@ def safeChack(data):
         data.code = _str[0]
     data.safe = True
 
-
 def errorTranslate(errorData):
     # 错误类型
     errorTypeReg = [[r'SystemExit:', "解释器请求退出:"],
@@ -90,12 +89,16 @@ def run_code(code):
     div = code.split(sep="\n")
     # 如果输入的代码只是一行表达式，那就直接输出计算结果
     if(len(div) == 1 and not 'print' in div[0] and not 'import' in div[0]):
-        code = 'print('+code+')'
-    data.code = code
+        data.code = 'print('+code+')'
+    else:
+        data.code = code
+
     safeChack(data)
     if 'linux' in sys.platform:
         pythonV = "python3"
+        
     timeStart = time.time()
+    # 建立Python子进程
     subp = subprocess.Popen(
         [pythonV, '-c', data.code], universal_newlines=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, encoding="utf-8")
     try:
@@ -105,16 +108,18 @@ def run_code(code):
         output = '计算超时,请检查并简化你的代码\n运行时间不得超过 '+str(timeOut)+' 秒'
         data.time = "3"
     except Exception as e:
-        output = errorTranslate(e)
+        output = e
     finally:
+        # 结束子进程
         subp.kill()
         if(errors != ""):
             output = errorTranslate(errors)
+    
     if(output != '' and output[-1] == '\n'):
         output = output[:-1]
+
     data.output = output
     return data
-
 
 def translate(output):
     # register re
