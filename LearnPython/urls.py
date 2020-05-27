@@ -14,5 +14,5 @@ urlpatterns = [
     path('doc/', views.doc, name='doc'),
     path('doc/<str:pk>', views.doc, name='doc'),
     path('loading/', views.LoadingView.as_view()),
-    path('<str:pk>', views.Default, name='default'),
+    path('<str:pk>/', views.Default),
 ]
