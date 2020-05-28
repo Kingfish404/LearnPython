@@ -78,20 +78,25 @@ class TestData():
             jsonData = f.read()
 
             Data = json.loads(jsonData, encoding="utf-8")
+            print(self.Type)
             if(self.Type == 0):
                 if(self.num < len(Data['choice'])):
                     self.TestData = Data['choice'][self.num]
                 else:
                     self.quest = "Num ERROR"
+                    self.TestData = Data['error'][0]
                     return
             elif(self.Type == 1):
                 if(self.num < len(Data['charge'])):
                     self.TestData = Data['charge'][self.num]
                 else:
                     self.quest = "Num ERROR"
+                    self.TestData = Data['error'][0]
                     return
         except FileNotFoundError:
             self.quest = "Error,file not found"
+            
+            
 
 
 def safeChack(data):
@@ -241,8 +246,10 @@ def api(request):
 @require_POST
 def getTest(request):
     # 获取题目的api
+    
     data = TestData()
     data.Type = int(request.POST.get('Type'))
     data.num = int(request.POST.get('num'))
     data.read()
     return JsonResponse(data.TestData)
+    
