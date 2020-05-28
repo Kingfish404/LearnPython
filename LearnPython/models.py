@@ -1,3 +1,4 @@
+from config import *
 from django.db import models
 import subprocess
 from subprocess import TimeoutExpired
@@ -18,22 +19,92 @@ import requests
 import sys
 import os
 sys.path.append(os.getcwd())
-from config import *
 
 # 主要功能函数
 # Major function
 
 
 class Data:
+    # 运行代码的数据文件
     code = str()
     output = str()
     time = float()
     safe = bool()
 
-# 对代码进行安全检测
 
+class Post():
+    # 网页数据的储存文件
+    title = ""
+    body = ""
+    __PostPath = os.getcwd()+POST
+
+    def __str__(self):
+        pass
+
+    def readPost(self, postName="0"):
+        try:
+            path = self.__PostPath+str(postName)+'.md'
+            f = open(path, 'r', encoding='utf-8', newline='\n')
+        except FileNotFoundError as e:
+            self.body = Msg404
+            self.reformat2markdown()
+        except Exception as e:
+            self.body = "Error"
+        else:
+            self.body = f.read()
+            f.close()
+
+    def reformat2markdown(self):
+        self.body = markdown.markdown(self.body,
+                                      extensions=[
+                                          'markdown.extensions.extra',
+                                          'markdown.extensions.codehilite',
+                                          'markdown.extensions.toc',
+                                      ])
+
+
+class TestData():
+    # 题目的读取文件
+    quest = ""      # 题目详细
+    Type = ""       # 题目类型，0为选择，1为判断
+    answer = []     # 正确答案
+    right = 0       # 若为选择题，1-A，2-B，以此类推，判断题：1-True,0-False
+    num = 0         # 当前第几题
+    TestData = ""
+
+    __TestPath = os.getcwd()+POST
+
+    def __str__(self, Type, num):
+        self.Type = Type
+
+    def read(self):
+        try:
+            path = self.__TestPath+TestName
+            f = open(path, 'r', encoding='utf-8', newline='\n')
+            jsonData = f.read()
+            Data = json.loads(jsonData, encoding="utf-8")
+            if(self.Type=='0'):
+                if(num<len(Data['choice'])):
+                    TestData=Data['choice'][num]
+                else:
+                    quest = "Num ERROR"
+                    return
+            elif(self.Type=='1'):
+                if(num<len(Data['charge'])):
+                    TestData=Data['charge'][num]
+                else:
+                    quest = "Num ERROR"
+                    return
+            quest=TestData['quest']
+            answer=TestData['answer']
+            right=TestData['right']
+        except FileNotFoundError:
+            data.quest = "Error,file not found"
+        except Exception as e:
+            print(e)
 
 def safeChack(data):
+    # 对代码进行安全检测
     disableShell = ['ps', 'cat', 'rm', 'cd', 'vi', 'vim',
                     'ls', 'dir', 'mv', 'cmd', 'reboot']
     # 对不安全命令进行警告替换
@@ -42,6 +113,7 @@ def safeChack(data):
                        "system(\"echo 为了系统安全,shell的 "+shell+" 命令是不允许使用的\")", data.code, 0, re.IGNORECASE)
         data.code = _str[0]
     data.safe = True
+
 
 def errorTranslate(errorData):
     # 错误类型
@@ -116,11 +188,12 @@ def run_code(code):
         subp.kill()
         if(errors != ""):
             output = errorTranslate(errors)
-    if( len(output)>0 and output[-1] == '\n'):
+    if(len(output) > 0 and output[-1] == '\n'):
         output = output[:-1]
 
     data.output = output
     return data
+
 
 def translate(output):
     # register re
@@ -173,31 +246,10 @@ def api(request):
     return JsonResponse({'output': data.output, 'time': data.time})
 
 
-class Post():
-    title = ""
-    body = ""
-    __PostPath = os.getcwd()+POST
-
-    def __str__(self):
-        pass
-
-    def readPost(self, postName="0"):
-        try:
-            path = self.__PostPath+str(postName)+'.md'
-            f = open(path, 'r', encoding='utf-8', newline='\n')
-        except FileNotFoundError as e:
-            self.body = Msg404
-            self.reformat2markdown()
-        except Exception as e:
-            self.body = "Error"
-        else:
-            self.body = f.read()
-            f.close()
-
-    def reformat2markdown(self):
-        self.body = markdown.markdown(self.body,
-                                      extensions=[
-                                          'markdown.extensions.extra',
-                                          'markdown.extensions.codehilite',
-                                          'markdown.extensions.toc',
-                                      ])
+@csrf_exempt
+@require_POST
+def getTest(request):
+    # 获取题目的api
+    data = TestData(request.POST.get('Type'), request.POST.get('num'))
+    data.read()
+    return JsonResponse({'Type': data.Type, 'quest': data.quest, 'answer': data.answer, 'right': data.right}, 'num', data.num)

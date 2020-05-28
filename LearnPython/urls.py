@@ -9,6 +9,7 @@ from . import models
 app_name = 'LearnPython'
 urlpatterns = [
     url(r'^api/$', models.api),
+    url(r'^getTest/$', models.getTest),
     path('', views.IndexView.as_view()),
     path('road/', views.RoadView.as_view()),
     path('doc/', views.doc, name='doc'),
