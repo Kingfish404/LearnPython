@@ -65,10 +65,7 @@ class Post():
 
 class TestData():
     # 题目的读取文件
-    quest = ""      # 题目详细
     Type = 0       # 题目类型，0为选择，1为判断
-    answer = []     # 正确答案
-    right = 0       # 若为选择题，1-A，2-B，以此类推，判断题：1-True,0-False
     num = 0         # 当前第几题
     TestData = ""
 
@@ -79,10 +76,8 @@ class TestData():
             path = self.__TestPath+TestName
             f = open(path, 'r', encoding='utf-8', newline='\n')
             jsonData = f.read()
-            Data = json.loads(jsonData, encoding="utf-8")
 
-            print("Test data :", type(self.Type), type(self.num))
-            
+            Data = json.loads(jsonData, encoding="utf-8")
             if(self.Type == 0):
                 if(self.num < len(Data['choice'])):
                     self.TestData = Data['choice'][self.num]
@@ -95,13 +90,8 @@ class TestData():
                 else:
                     self.quest = "Num ERROR"
                     return
-            self.quest = TestData['quest']
-            self.answer = TestData['answer']
-            self.right = TestData['right']
         except FileNotFoundError:
             self.quest = "Error,file not found"
-        except Exception as e:
-            print(e)
 
 
 def safeChack(data):
@@ -255,4 +245,4 @@ def getTest(request):
     data.Type = int(request.POST.get('Type'))
     data.num = int(request.POST.get('num'))
     data.read()
-    return JsonResponse({'Type': data.Type, 'quest': data.quest, 'answer': data.answer, 'right': data.right}, 'num', data.num)
+    return JsonResponse(data.TestData)

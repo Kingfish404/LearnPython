@@ -32,7 +32,9 @@
         }
 
         .submit {
-            margin: auto 40%;
+            margin: auto 40% 20%;
+            bottom: 0;
+            position: absolute;
         }
 
         @media screen and (max-width: 760px) {
@@ -44,45 +46,16 @@
 </head>
 
 <body>
-    <div class="h1">Python学习路径</div>
-    <div>
-        <div class="dropdown leval shadow mb-5 bg-white rounded">
-            <button class="btn btn-secondary dropdown-toggle w-100 text-center" type="button" id="dropdownMenuButton"
-                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                初级
-            </button>
-            <div class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="#">Something else here</a>
-            </div>
-        </div>
-
-        <div class="dropdown leval shadow mb-5 bg-white rounded">
-            <button class="btn btn-secondary dropdown-toggle w-100 text-center" type="button" id="dropdownMenuButton"
-                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                中级
-            </button>
-            <div class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="#">Something else here</a>
-            </div>
-        </div>
-
-        <div class="dropdown leval shadow mb-5 bg-white rounded">
-            <button class="btn btn-secondary dropdown-toggle w-100 text-center" type="button" id="dropdownMenuButton"
-                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                高级
-            </button>
-            <div class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="#">Something else here</a>
-            </div>
+    <div class="h1">Python知识测试</div>
+    <hr>
+    <div class="content">
+        <div class="text-left h3 quest"></div>
+        <div class="text-left answer">
+            <ul class="answerList">
+            </ul>
         </div>
     </div>
-    <button class="submit"></button>
+    <button class="submit">开始答题</button>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.slim.min.js"
     integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
@@ -96,18 +69,36 @@
 <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
 
 <script>
-    function OutPut(data){
+    function OutPut(data) {
+        $(".quest").html(data["quest"])
+        $(".answer").html(data["answer"])
+        $(".answer").html(data["answer"])
+        answerData = data["answer"]
+        for (const key in answerData) {
+            if (object.hasOwnProperty(key)) {
+                const element = object[key];
+                
+            }
+        }
+
+        var link1 = $('<a>', {
+            text: "baidu",
+            href: "http://www.baidu.com",
+            target: "_blank",
+            title: "goto baidu"
+        });
+        $(".submit").html("下一题")
         console.log(data)
     }
 
     $('.submit').click(function () {
-        
+
         $.ajax({
             url: '/getTest/', //代码发送的地址
             type: 'POST', // 请求类型
             data: {
-                'Type': 0,
-                'num':0
+                'Type': 0,      // 题目类型，0为选择，1为判断
+                'num': 0         // 题目编号
             }, //调用代码获取函数，获得代码文本
             dataType: 'json', //期望获取的响应类型为 json
             success: OutPut // 在请求成功之后调用 OutPut 函数，将结果打印到输出框  })})
