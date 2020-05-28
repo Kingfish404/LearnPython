@@ -93,6 +93,8 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"
     integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
     crossorigin="anonymous"></script>
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+
 <script>
     function OutPut(data){
         console.log(data)
@@ -104,7 +106,7 @@
             url: '/getTest/', //代码发送的地址
             type: 'POST', // 请求类型
             data: {
-                'Type': 1,
+                'Type': 0,
                 'num':0
             }, //调用代码获取函数，获得代码文本
             dataType: 'json', //期望获取的响应类型为 json
