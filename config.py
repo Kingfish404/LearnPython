@@ -14,8 +14,7 @@ timeOutMsg = "请检查并简化你的代码"
 POST = '/post/'
 
 # 储存题目的文件名
-
-TestName = 'Test_1.json'
+TestName = 'Test.json'
 
 # 404提示信息
 Msg404 = '好像到了奇怪的地方\n请返回首页'
