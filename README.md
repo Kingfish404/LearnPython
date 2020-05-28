@@ -3,12 +3,13 @@
 ## 配置说明
 
 >.  
-├── LearnPython            **Python实验界面**  
-│   ├── static      **css等文件**  
+├── LearnPython         **Python实验界面**  
+│   ├── static          **css等文件**  
 │   │   └── LearnPython
-│   └── templates      **Html文件**  
+│   └── templates       **Html文件**  
 │       └── LearnPython
-├── siteProject  **项目设置**
+├── post                **文档文件**
+├── siteProject         **项目设置**
 └── static              **全局静态文件**  
 
 
@@ -16,22 +17,26 @@
 
 系统：Linux 或者 Window10
 
-软件：Python3.6+ 以及 Django 与 Sqlite3
+软件：Python3.6+ 以及 Django,markdown,requests与 Sqlite3
 
 ### Debian/Ubuntu
 ```shell
-# 配置环境
+# 配置Deb系列服务器环境
 sudo apt install  python3
 sudo apt install python3-pip
 pip3 install django
+pip3 install markdown
+pip3 install requests
 ```
 
 ### Redhat/CentOS
 ```shell
-# 配置环境
+# 配置服务器环境
 sudo yum install  python3
 sudo yum install python3-pip
 pip3 install django
+pip3 install markdown
+pip3 install requests
 ```
 
 ## 简介
@@ -72,4 +77,4 @@ https://github.com/Jet-ChenBo/online_python.git
 
 感谢该作者[Jet-ChenBo](https://github.com/Jet-ChenBo)
 
-2020-04-26
+2020-05-28
