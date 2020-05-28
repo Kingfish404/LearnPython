@@ -19,8 +19,28 @@
             margin: auto;
         }
 
+        li {
+            width: 100%;
+            margin: 5% auto;
+        }
+
+        .content {
+            width: 90%;
+            margin: auto;
+        }
+
         .h1 {
-            text-align: center;
+            display: block;
+            font-size: 2em;
+            margin-block-start: 0.67em;
+            margin-block-end: 0.67em;
+            margin-inline-start: 0px;
+            margin-inline-end: 0px;
+            font-weight: bold;
+        }
+
+        .answer button {
+            width: 50%;
         }
 
         .leval {
@@ -46,16 +66,15 @@
 </head>
 
 <body>
-    <div class="h1">Python知识测试</div>
-    <hr>
     <div class="content">
-        <div class="text-left h3 quest"></div>
+        <div class="h1">Python知识测试</div>
+        <div class="text-left h4 quest"></div>
         <div class="text-left answer">
             <ul class="answerList">
             </ul>
         </div>
+        <button class="submit">开始答题</button>
     </div>
-    <button class="submit">开始答题</button>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.slim.min.js"
     integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
@@ -69,32 +88,51 @@
 <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
 
 <script>
-    function OutPut(data) {
-        $(".quest").html(data["quest"]);
-        $(".answerList").children().filter("li").remove();
-        answerData = data["answer"];
-        for (const key in answerData) {
-            var answer = $('<li>', {
-                text: answerData[key]
-            });
-            answer.appendTo(".answer")
-        }
-        $(".submit").html("下一题")
-        console.log(data)
+    var right = 0;
+
+    $(document).ready(function () {
+        GetTest()
+    });
+
+    function Check() {
+        console.log("active")
     }
 
-    $('.submit').click(function () {
+    function OutPut(data) {
+        console.log(data)
+        $(".quest").html(data["quest"]);
+        $(".answerList").children().remove();
+        right = Number(data['right'])
+        answerData = data["answer"];
+        for (const key in answerData) {
+            var answerF = $('<li>', {
+            });
+            var answer = $('<button>', {
+                text: answerData[key],
+                click: Check,
+            });
 
+            answer.appendTo(answerF)
+            answerF.appendTo(".answerList")
+        }
+        $(".submit").html("下一题")
+    }
+
+    function GetTest(Type = 0, num = 0) {
         $.ajax({
             url: '/getTest/', //代码发送的地址
             type: 'POST', // 请求类型
             data: {
-                'Type': 0,      // 题目类型，0为选择，1为判断
-                'num': 0         // 题目编号
+                'Type': Type,      // 题目类型，0为选择，1为判断
+                'num': num         // 题目编号
             }, //调用代码获取函数，获得代码文本
             dataType: 'json', //期望获取的响应类型为 json
             success: OutPut // 在请求成功之后调用 OutPut 函数，将结果打印到输出框  })})
         })
+    }
+
+    $('.submit').click(function () {
+        GetTest()
     })
 </script>
 

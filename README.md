@@ -1,4 +1,4 @@
-# Python online
+# HelloPython
 
 ## 配置说明
 
@@ -17,7 +17,7 @@
 
 系统：Linux 或者 Window10
 
-软件：Python3.6+ 以及 Django,markdown,requests与 Sqlite3
+软件：Python3.6+ 以及Python包：Django,markdown,requests与 Sqlite3(可以无)
 
 ### Debian/Ubuntu
 ```shell
@@ -49,7 +49,7 @@ python3 manage.py runserver
 # 或者
 python manage.py runserver
 ```
-运行**start.sh**或**start.bat**
+Windows平台可以运行**start.bat**
 
 ## 测试方法
 ```shell
@@ -60,20 +60,13 @@ python3 manage.py test
 
 ## 注意
 
-默认的代码执行命令为python,如果在Linux平台运行，且希望执行pyhton3版本
-推荐用以下命令
-```shell
-sudo mv /usr/bin/python /usr/bin/python_backup
-sudo ln -s /usr/bin/python3 /usr/bin/python
-```
-
-将python命令指向python3
+暂无
 
 ## REF
 
 本项目参考过以下项目
 
-https://github.com/Jet-ChenBo/online_python.git
+https://github.com/Jet-ChenBo/online_python.gite
 
 感谢该作者[Jet-ChenBo](https://github.com/Jet-ChenBo)
 
