@@ -70,23 +70,15 @@
 
 <script>
     function OutPut(data) {
-        $(".quest").html(data["quest"])
-        $(".answer").html(data["answer"])
-        $(".answer").html(data["answer"])
-        answerData = data["answer"]
+        $(".quest").html(data["quest"]);
+        $(".answerList").children().filter("li").remove();
+        answerData = data["answer"];
         for (const key in answerData) {
-            if (object.hasOwnProperty(key)) {
-                const element = object[key];
-                
-            }
+            var answer = $('<li>', {
+                text: answerData[key]
+            });
+            answer.appendTo(".answer")
         }
-
-        var link1 = $('<a>', {
-            text: "baidu",
-            href: "http://www.baidu.com",
-            target: "_blank",
-            title: "goto baidu"
-        });
         $(".submit").html("下一题")
         console.log(data)
     }
