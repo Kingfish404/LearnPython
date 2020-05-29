@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Python学习路径</title>
+    <title>Python知识测试</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <style>
@@ -17,6 +17,7 @@
             width: 20%;
             height: 5%;
             margin: auto;
+            background-color: white;
         }
 
         li {
@@ -33,6 +34,11 @@
         option {
             height: 10%;
             text-align: center;
+        }
+
+        svg {
+            width: 20%;
+            height: 20%;
         }
 
         #select_type {
@@ -55,9 +61,11 @@
             margin-inline-end: 0px;
             font-weight: bold;
         }
-        .h4{
+
+        .h4 {
             margin: 5% auto;
         }
+
         .answer button {
             width: 50%;
         }
@@ -67,10 +75,11 @@
         }
 
         .select_option {
+            color: rgb(10, 73, 145);
             display: inline-block;
             width: 200px;
             height: 200px;
-            margin: auto 26px 26px;
+            margin: 52px 26px 26px;
             margin-right: 26px;
             margin-left: 26px;
             margin-bottom: 26px;
@@ -80,8 +89,13 @@
             border-radius: 4px;
             overflow: hidden;
             cursor: pointer;
+            border: none;
             transition: transform .5s ease;
-            font-size: x-large;
+        }
+
+        .select_option p {
+            margin: 10%;
+            font-size: large;
         }
 
         .select_option:hover {
@@ -89,7 +103,8 @@
         }
 
         .select_option:focus {
-            background-color: rgb(70, 136, 211);
+            background-color: rgb(164, 198, 236);
+            outline: none;
         }
 
         .leval {
@@ -104,6 +119,8 @@
             width: 50%;
             margin: 10% 25%;
             height: 10%;
+            background-color: rgb(228, 228, 228);
+            border:none;
         }
 
         @media screen and (max-width: 760px) {
@@ -111,8 +128,15 @@
                 margin: 30% 10%;
             }
 
+            .select_option {
+                width: 110px;
+                height: 110px;
+                margin: 26px 16px 16px;
+            }
+
             .submit {
-                height: 10%;
+                margin: 5% 25%;
+                height: 20%;
             }
         }
     </style>
@@ -120,11 +144,32 @@
 
 <body>
     <div class="content">
-        <div class="h1">Python知识测试</div>
         <div class="testArea">
             <ul id="select_type">
-                <button class="select_option" value="0">选择题</button>
-                <button class="select_option" value="1">判断题</button>
+                <button class="select_option" value="0">
+                    <svg t="1590762037998" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                        xmlns="http://www.w3.org/2000/svg" p-id="1986" width="200" height="200">
+                        <path
+                            d="M482.647036 943.046285H175.181824c-55.567204 0-100.659442-43.595814-100.659441-97.267548V172.587546c0-53.671734 45.092237-97.267548 100.659441-97.267548v0.099762h660.720993c55.467443 0 100.55968 43.695575 100.55968 97.267548V564.650584h74.521906V172.687308c0-94.773508-78.612131-171.889215-175.181347-171.889215H175.181824C78.612608 0.897854 0.000477 77.9138 0.000477 172.687308v673.191191c0 94.673746 78.512369 171.789453 175.181347 171.789453h307.465212v-74.621667z m0 0"
+                            p-id="1987"></path>
+                        <path
+                            d="M1008.490363 677.281416L473.269447 358.84243c-19.653033-11.672106-32.322754-2.893086-28.132767 19.553271l113.827971 616.027802c4.189987 22.446357 18.25637 25.538966 31.325138 6.883549 0 0 72.726197-104.250859 132.383627-167.898751l120.911043 180.069665c7.382357 10.973775 22.346596 13.866861 33.220609 6.28498l56.963866-39.405827c10.973775-7.581881 13.866861-22.745642 6.384742-33.819178l-120.711521-179.770381c76.517137-31.724185 184.558937-58.46029 184.558937-58.46029 22.047311-5.486887 24.042543-19.45351 4.489271-31.025854z"
+                            p-id="1988"></path>
+                    </svg>
+                    <p>选择题</p>
+                </button>
+                <button class="select_option" value="1">
+                    <svg t="1590762077311" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                        xmlns="http://www.w3.org/2000/svg" p-id="2994" width="200" height="200">
+                        <path
+                            d="M914.285714 1024h-804.571428C51.2 1024 0 972.8 0 914.285714v-804.571428C0 51.2 51.2 0 109.714286 0h804.571428c58.514286 0 109.714286 51.2 109.714286 109.714286v804.571428c0 58.514286-51.2 109.714286-109.714286 109.714286zM109.714286 73.142857c-21.942857 0-36.571429 14.628571-36.571429 36.571429v804.571428c0 21.942857 14.628571 36.571429 36.571429 36.571429h804.571428c21.942857 0 36.571429-14.628571 36.571429-36.571429v-804.571428c0-21.942857-14.628571-36.571429-36.571429-36.571429h-804.571428z"
+                            p-id="2995"></path>
+                        <path
+                            d="M519.314286 248.685714l-58.514286-58.514285-138.971429 131.657142-80.457142-80.457142-58.514286 58.514285L321.828571 438.857143l197.485715-190.171429z m234.057143 365.714286l-65.828572 58.514286-65.828571-65.828572-58.514286 65.828572 65.828571 58.514285-65.828571 73.142858 58.514286 58.514285 65.828571-65.828571 65.828572 65.828571 58.514285-58.514285-58.514285-73.142858 65.828571-65.828571-65.828571-51.2z m-526.628572 124.342857l512-512 58.514286 58.514286-512 512-58.514286-58.514286z"
+                            p-id="2996"></path>
+                    </svg>
+                    <p>判断题</p>
+                </button>
             </ul>
             <div class="text-left h4 quest"></div>
             <div class="text-left answer">
@@ -182,7 +227,7 @@
         if (data['errorcode'] == 404) {
             $(".Common").html(data['msg'])
         } else {
-            $(".quest").html(String(num)+". "+data["quest"]);
+            $(".quest").html(String(num) + ". " + data["quest"]);
             $(".answerList").children().remove();
             right = Number(data['right'])
             answerData = data["answer"];
