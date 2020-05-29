@@ -68,52 +68,79 @@
 <body>
     <div class="content">
         <div class="h1">Python知识测试</div>
+        <select id="select_type">
+            <option>-选择题目类型-</option>
+            <option value="0">选择</option>
+            <option value="1">判断</option>
+        </select>
         <div class="text-left h4 quest"></div>
         <div class="text-left answer">
             <ul class="answerList">
             </ul>
         </div>
+
         <button class="submit">开始答题</button>
     </div>
 </body>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.slim.min.js"
-    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-    crossorigin="anonymous"></script>
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
+</script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-    crossorigin="anonymous"></script>
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+</script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"
-    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-    crossorigin="anonymous"></script>
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+</script>
 <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
 
 <script>
-    var right = 0;
+    var right = 0; //定义全局变量
+    var num = 0
+    var options
 
     $(document).ready(function () {
-        GetTest()
+        //GetTest()
     });
 
+    function get_test_list(num, options) {
+
+        GetTest(options, num)
+        $('#select_type').remove()
+    }
+
     function Check() {
-        console.log("active")
+        if (this.id != null) {
+            if (this.id == right) {
+                alert("AC")
+            } else {
+                alert("WA")
+            }
+        }
+
     }
 
     function OutPut(data) {
         console.log(data)
-        $(".quest").html(data["quest"]);
-        $(".answerList").children().remove();
-        right = Number(data['right'])
-        answerData = data["answer"];
-        for (const key in answerData) {
-            var answerF = $('<li>', {
-            });
-            var answer = $('<button>', {
-                text: answerData[key],
-                click: Check,
-            });
+        if (data['errorcode'] == 404) {
+            alert(data['msg'])
+        } else {
+            $(".quest").html(data["quest"]);
+            $(".answerList").children().remove();
+            right = Number(data['right'])
+            answerData = data["answer"];
+            let no = 1
+            for (const key in answerData) {
+                var answerF = $('<li>', {});
+                var answer = $('<button>', {
+                    text: answerData[key],
+                    click: Check,
+                    id: no
+                });
 
-            answer.appendTo(answerF)
-            answerF.appendTo(".answerList")
+                no = no + 1
+                answer.appendTo(answerF)
+                answerF.appendTo(".answerList")
+            }
         }
         $(".submit").html("下一题")
     }
@@ -123,16 +150,23 @@
             url: '/getTest/', //代码发送的地址
             type: 'POST', // 请求类型
             data: {
-                'Type': Type,      // 题目类型，0为选择，1为判断
-                'num': num         // 题目编号
+                'Type': Type, // 题目类型，0为选择，1为判断
+                'num': num, // 题目编号
             }, //调用代码获取函数，获得代码文本
             dataType: 'json', //期望获取的响应类型为 json
             success: OutPut // 在请求成功之后调用 OutPut 函数，将结果打印到输出框  })})
-        })
+        });
+
     }
 
     $('.submit').click(function () {
-        GetTest()
+       
+        if (num == 0) {
+            options = $('#select_type option:selected').val()
+        }
+        get_test_list(num, options)
+        num += 1
+
     })
 </script>
 
