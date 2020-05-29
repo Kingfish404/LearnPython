@@ -35,6 +35,10 @@
             text-align: center;
         }
 
+        #select_type {
+            padding: 0;
+        }
+
         .content {
             width: 90%;
             height: 100%;
@@ -42,6 +46,7 @@
         }
 
         .h1 {
+            text-align: center;
             display: block;
             font-size: 2em;
             margin-block-start: 0.67em;
@@ -50,12 +55,19 @@
             margin-inline-end: 0px;
             font-weight: bold;
         }
-
+        .h4{
+            margin: 5% auto;
+        }
         .answer button {
             width: 50%;
         }
 
+        .testArea {
+            text-align: center;
+        }
+
         .select_option {
+            display: inline-block;
             width: 200px;
             height: 200px;
             margin: auto 26px 26px;
@@ -72,6 +84,10 @@
             font-size: x-large;
         }
 
+        .select_option:hover {
+            transform: scale(1.05);
+        }
+
         .select_option:focus {
             background-color: rgb(70, 136, 211);
         }
@@ -85,14 +101,18 @@
         }
 
         .submit {
-            margin: auto 35% 20%;
-            bottom: 0;
-            position: absolute;
+            width: 50%;
+            margin: 10% 25%;
+            height: 10%;
         }
 
         @media screen and (max-width: 760px) {
             .leval {
                 margin: 30% 10%;
+            }
+
+            .submit {
+                height: 10%;
             }
         }
     </style>
@@ -101,16 +121,18 @@
 <body>
     <div class="content">
         <div class="h1">Python知识测试</div>
-        <ul id="select_type">
-            <button class="select_option" value="0">选择</button>
-            <button class="select_option" value="1">判断</button>
-        </ul>
-        <div class="text-left h4 quest"></div>
-        <div class="text-left answer">
-            <ol class="answerList">
-            </ol>
+        <div class="testArea">
+            <ul id="select_type">
+                <button class="select_option" value="0">选择题</button>
+                <button class="select_option" value="1">判断题</button>
+            </ul>
+            <div class="text-left h4 quest"></div>
+            <div class="text-left answer">
+                <ol class="answerList">
+                </ol>
+            </div>
+            <div class="Common"></div>
         </div>
-        <div class="Common"></div>
 
         <button class="submit">开始答题</button>
     </div>
@@ -138,7 +160,7 @@
     function get_test_list(num, options) {
 
         GetTest(options, num)
-        $('#select_type').remove()
+        $('#select_type').hide(250)
     }
 
     function Check() {
@@ -158,9 +180,9 @@
     function OutPut(data) {
         // console.log(data)    //显示返回的数据
         if (data['errorcode'] == 404) {
-            alert(data['msg'])
+            $(".Common").html(data['msg'])
         } else {
-            $(".quest").html(data["quest"]);
+            $(".quest").html(String(num)+". "+data["quest"]);
             $(".answerList").children().remove();
             right = Number(data['right'])
             answerData = data["answer"];
@@ -197,9 +219,9 @@
     }
 
     $('.submit').click(function () {
-        // if (num == 0) {
-        //     options = $('#select_type option:selected').val()
-        // }
+        if (num == 0) {
+            $('.h1').hide(100);
+        }
         get_test_list(num, options)
         num += 1
 
