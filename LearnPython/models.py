@@ -7,7 +7,6 @@ from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 from django.views.decorators.csrf import csrf_exempt
 
-import markdown
 import time
 import re
 
@@ -53,14 +52,6 @@ class Post():
         else:
             self.body = f.read()
             f.close()
-
-    def reformat2markdown(self):
-        self.body = markdown.markdown(self.body,
-                                      extensions=[
-                                          'markdown.extensions.extra',
-                                          'markdown.extensions.codehilite',
-                                          'markdown.extensions.toc',
-                                      ])
 
 
 class TestData():

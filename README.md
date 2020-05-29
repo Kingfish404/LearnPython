@@ -17,7 +17,7 @@
 
 系统：Linux 或者 Window10
 
-软件：Python3.6+ 以及Python包：Django,markdown,requests与 Sqlite3(可以无)
+软件：Python3.6+ 以及Python包：Django,requests与 Sqlite3(可以无)
 
 ### Debian/Ubuntu
 ```shell
@@ -25,7 +25,6 @@
 sudo apt install  python3
 sudo apt install python3-pip
 pip3 install django
-pip3 install markdown
 pip3 install requests
 ```
 
@@ -35,7 +34,6 @@ pip3 install requests
 sudo yum install  python3
 sudo yum install python3-pip
 pip3 install django
-pip3 install markdown
 pip3 install requests
 ```
 
