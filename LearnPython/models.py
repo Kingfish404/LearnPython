@@ -67,9 +67,8 @@ class TestData():
             path = self.__TestPath+TestName
             f = open(path, 'r', encoding='utf-8', newline='\n')
             jsonData = f.read()
-
+            f.close()
             Data = json.loads(jsonData, encoding="utf-8")
-            print(self.Type)
             if(self.Type == 0):
                 if(self.num < len(Data['choice'])):
                     self.TestData = Data['choice'][self.num]
