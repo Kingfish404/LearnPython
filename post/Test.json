@@ -21,7 +21,45 @@
                 "答案3"
             ],
             "right": 2
+        },
+        {
+            "quest": "Python中==运算符比较两个对象的值，下列选项中哪一个是is比较对象的因素",
+            "Type": 1,
+            "num":1,
+            "answer": [
+                "id()",
+                "sum()",
+                "max()",
+                "min()"
+            ],
+            "right": 1
+        },
+        {
+            "quest": "当知道条件为真，想要程序无限执行直到人为停止的话，可以需要下列哪个选项()：",
+            "Type":1,
+            "num":1,
+            "answer": [
+                "for",
+                "break",
+                "while",
+                "if"
+            ],
+            "right": 3
+        },
+        {
+            "quest": "python3解释器执行long(10)的结果为",
+            "Type": 1,
+            "num":1,
+            "answer": [
+                "10L",
+                "101",
+                "NameError: name 'long' is not defined",
+                "1"
+            ],
+            "right": 2
         }
+    
+        
     ],
     "charge": [
         {
