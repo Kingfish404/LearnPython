@@ -5,19 +5,19 @@
 >.  
 ├── LearnPython         **Python实验界面**  
 │   ├── static          **css等文件**  
-│   │   └── LearnPython
+│   │   └── LearnPython  
 │   └── templates       **Html文件**  
-│       └── LearnPython
-├── post                **文档文件**
-├── siteProject         **项目设置**
-└── static              **全局静态文件**  
+│       └── LearnPython   
+├── post                **文档文件**   
+├── siteProject         **项目设置**   
+└── static              **全局静态文件**   
 
 
 ## 环境要求
 
 系统：Linux 或者 Window10
 
-软件：Python3.6+ 以及Python包：Django,markdown,requests与 Sqlite3(可以无)
+软件：Python3.6+ 以及Python包：Django,requests与 Sqlite3(可以无)
 
 ### Debian/Ubuntu
 ```shell
@@ -25,7 +25,6 @@
 sudo apt install  python3
 sudo apt install python3-pip
 pip3 install django
-pip3 install markdown
 pip3 install requests
 ```
 
@@ -35,7 +34,6 @@ pip3 install requests
 sudo yum install  python3
 sudo yum install python3-pip
 pip3 install django
-pip3 install markdown
 pip3 install requests
 ```
 

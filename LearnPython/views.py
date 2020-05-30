@@ -1,7 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
-import markdown
 
 # Create your views here.
 # 界面控制
@@ -34,8 +33,6 @@ def doc(request, pk=0):
     post = Post()
     post.title = pk
     post.readPost(pk)
-    # 默认选择前端渲染markdown文本，也可以后端渲染
-    # post.reformat2markdown()
     return render(request, 'LearnPython/doc.html', context={'post': post})
 
 def Default(request,pk="404"):
