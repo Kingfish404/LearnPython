@@ -5,12 +5,12 @@
 >.  
 ├── LearnPython         **Python实验界面**  
 │   ├── static          **css等文件**  
-│   │   └── LearnPython
+│   │   └── LearnPython  
 │   └── templates       **Html文件**  
-│       └── LearnPython
-├── post                **文档文件**
-├── siteProject         **项目设置**
-└── static              **全局静态文件**  
+│       └── LearnPython   
+├── post                **文档文件**   
+├── siteProject         **项目设置**   
+└── static              **全局静态文件**   
 
 
 ## 环境要求

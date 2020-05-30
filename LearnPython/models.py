@@ -46,7 +46,6 @@ class Post():
             f = open(path, 'r', encoding='utf-8', newline='\n')
         except FileNotFoundError as e:
             self.body = Msg404
-            self.reformat2markdown()
         except Exception as e:
             self.body = "Error"
         else:
@@ -130,6 +129,7 @@ def errorTranslate(errorData):
                 [r'Did you mean ([^?]*)?', "你是想使用 \\1 吗"],
                 [r'Unbound LocalError:', "未绑定的本地错误:"],
                 [r'division by zero', "除以零"],
+                [r'EOL while scanning string literal', "扫描字符串文本时出现终止错误"],
                 [r'Missing parentheses in call to (\'print\')',
                  "调用 \\1 时缺少括号"],
                 ]
