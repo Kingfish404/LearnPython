@@ -11,7 +11,7 @@ print是Python里面几乎万能的输出函数，你所用到的任何东西，
 就像我们一直写的
 
 ```Python
-print('hello wolrd!')
+print('hello world!')
 ```
 
 不过这里只要先记住，如果你想显示一个东西，那么就用把哪个东西放到括号里面
